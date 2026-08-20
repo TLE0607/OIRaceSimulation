@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>OI 比赛模拟器</title><style>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>OI 比赛模拟器</title><style>
 :root{--bg:#f5f5f5;--surface:#fff;--text:#222;--t2:#555;--ac:#444;--cor:#555;--inc:#888;--tf:#666;--td:#333;--sf:#999;--border:#ccc;--shadow:0 4px 20px rgba(0,0,0,.06);--skb:#aaa;--brbg:#444;--brh:#333;--cbbg:#555;--cbb:#3a3a3a;--cbh:#444;--rup:#4a7c59;--rdn:#b84c3b;--rsm:#888;--dcb:#e8e8e8;--dcr:#fafafa;--dl:#e8943a;--ds:#5a9a4b;--dn:#c0c0c0;--dte:#5b9bd5;--dtel:#d6e8f7;--drb:#9b59b6;--drbl:#ecdff2;--dfs:#e6a817;--dfsl:#fff8e1;--dmb:#e8943a;--dtb:#5b9bd5;--din:#d4a017;--dinl:#fef9e7;--t1b:#e8943a;--t1bg:#fffaf5;--t2b:#d94a3a;--t2bg:#fff5f5;--t3b:#8b1a1a;--t3bg:#fef5f5;--eab:#7b3fa3;--eabg:#f9f4fc;--fb:#4a9a3f;--fbg:#f4faf3;--asb:#3a7ab5;--asbg:#e8f2fa}
 *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;display:flex;justify-content:center;align-items:flex-start;min-height:100vh;padding:10px;user-select:none;-webkit-user-select:none}.main-wrapper{display:flex;flex-direction:row;align-items:flex-start;justify-content:center;gap:20px;max-width:1400px;width:100%;flex-wrap:wrap}.game-container{background:var(--surface);border-radius:20px;padding:10px 18px 14px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;min-width:0;border:3px solid transparent;position:relative;transition:border-color .15s}.game-container.correct-flash{border-color:#4caf50!important;box-shadow:0 0 28px rgba(76,175,80,.55)!important;animation:correctBorderFlash .5s ease-out forwards}@keyframes correctBorderFlash{0%{border-color:#4caf50;box-shadow:0 0 28px rgba(76,175,80,.55)}100%{border-color:transparent;box-shadow:0 4px 20px rgba(0,0,0,.06)}}.game-container.blue-flash{border-color:#3399ff!important;box-shadow:0 0 28px rgba(51,153,255,.55)!important;animation:blueBorderFlash .5s ease-out forwards}@keyframes blueBorderFlash{0%{border-color:#3399ff;box-shadow:0 0 28px rgba(51,153,255,.55)}100%{border-color:transparent;box-shadow:0 4px 20px rgba(0,0,0,.06)}}.global-message{width:100%;padding:8px 14px;border-radius:10px;font-size:.78rem;font-weight:600;text-align:center;min-height:20px;transition:.3s;color:#555;background:#fafafa;border:1px solid #e0e0e0;margin-top:2px}.global-message.warning{color:#8a6d14;background:#fffcf0;border-color:#e6a817}.global-message.success{color:#3d6b30;background:#e8f5e9;border-color:#5a9a4b}.global-message.info{color:#2b5f8a;background:#e8f2fa;border-color:#5b9bd5}.side-panel{background:var(--surface);border-radius:16px;padding:16px 14px;box-shadow:var(--shadow);border:1px solid var(--border);width:280px;font-size:.8rem;display:flex;flex-direction:column;gap:10px;position:sticky;top:10px;max-height:90vh;overflow-y:auto}.side-panel.collapsed{display:none}.side-panel-title{font-weight:700;font-size:.95rem;color:#333;text-align:center;border-bottom:1px solid #ddd;padding-bottom:6px}.side-attr-row{display:flex;align-items:center;justify-content:space-between;background:#fafafa;border-radius:12px;padding:8px 14px;gap:8px}.side-attr-label{font-weight:700;color:#444;font-size:.85rem}.side-attr-value{font-weight:700;font-size:1rem;color:#222;min-width:28px;text-align:center}.focus-btn-inline{background:#ddd;border:1px solid #bbb;border-radius:50%;width:32px;height:32px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;position:relative;flex-shrink:0}.focus-btn-inline:hover{background:#ccc;border-color:#999}.focus-btn-inline.active{background:#f9a825;border-color:#f57f17;color:#fff}.focus-btn-inline.locked{background:#e8e8e8;border-color:#ccc;color:#bbb;cursor:not-allowed;opacity:.6}.focus-btn-inline.has-cost::after{content:attr(data-cost);position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:.65rem;font-weight:800;color:#777;pointer-events:none;white-space:nowrap}.side-stock-row{display:flex;align-items:center;justify-content:space-between;background:#fafafa;border-radius:10px;padding:6px 10px;font-size:.73rem;gap:6px}.side-stock-icon{font-size:1rem}.side-stock-name{font-weight:600;color:#555;min-width:36px}.side-stock-count{font-weight:700;color:#333;min-width:20px;text-align:center}.side-stock-bar{flex:1;height:6px;background:#e8e8e8;border-radius:4px;overflow:hidden}.side-stock-fill{height:100%;border-radius:4px;transition:width .3s}.side-stock-fill.time-fill{background:#5b9bd5}.side-stock-fill.mind-fill{background:#e8943a}.side-stock-fill.boost-fill{background:#9b59b6}.side-stock-fill.inspire-fill{background:#d4a017}.attr-focus-bonus{font-size:.65rem;font-weight:800;color:#f57f17;background:#fff3e0;padding:1px 6px;border-radius:8px;white-space:nowrap;transition:.2s;display:inline-block;margin-left:4px}.level-banner{position:absolute;top:-2px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#3a3a3a,#555);color:#fff;padding:6px 22px;border-radius:0 0 16px 16px;font-weight:800;font-size:.9rem;letter-spacing:.5px;box-shadow:0 3px 16px rgba(0,0,0,.25);z-index:10;white-space:nowrap;transition:.3s;display:flex;align-items:center;gap:8px}.level-banner.sim{background:linear-gradient(135deg,#5a5a5a,#777);box-shadow:0 3px 16px rgba(0,0,0,.2)}.level-banner.final{background:linear-gradient(135deg,#111,#333);box-shadow:0 3px 20px rgba(0,0,0,.4);animation:glowBanner 1.5s infinite alternate}@keyframes glowBanner{from{box-shadow:0 3px 20px rgba(0,0,0,.4)}to{box-shadow:0 6px 32px rgba(0,0,0,.55)}}.attrs-panel{width:100%;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:6px 10px;background:#fafafa;border-radius:14px;border:1px solid #e0e0e0;margin-top:6px;align-items:center;font-size:.78rem;color:#888;min-height:20px}.score-progress-panel{width:100%;display:flex;align-items:center;gap:10px;padding:5px 14px;background:#fafafa;border-radius:30px;border:1px solid #e0e0e0}.score-progress-label{font-size:.8rem;font-weight:700;color:#444;white-space:nowrap;min-width:40px}.score-bar-outer{flex:1;height:12px;background:#e8e8e8;border-radius:8px;overflow:hidden;position:relative}.score-bar-inner{position:absolute;top:0;left:0;height:100%;border-radius:8px;transition:width 2s,background-color 2s;background:#1a1a1a}.score-number{font-size:.85rem;font-weight:700;color:#333;min-width:50px;text-align:right;white-space:nowrap;transition:color .3s}.score-number.tick{animation:numTick .15s ease-out}@keyframes numTick{0%{transform:scale(1.25);color:#4caf50}100%{transform:scale(1);color:#333}}.time-panel{width:100%;display:flex;align-items:center;gap:10px;padding:6px 12px;background:#fafafa;border-radius:30px;border:1px solid #e0e0e0;flex-wrap:wrap}.time-icon{font-size:1.2rem}.time-label{font-size:.8rem;font-weight:700;color:#444;white-space:nowrap;min-width:50px}.time-bars-group{display:flex;flex-direction:column;gap:3px;flex:1;min-width:80px}.time-bar-outer{height:10px;background:#e8e8e8;border-radius:8px;overflow:hidden;position:relative;width:100%}.stamina-bar,.time-bar-inner{position:absolute;top:0;left:0;height:100%;border-radius:8px;transition:width .5s}.time-bar-inner{background:var(--tf)}.time-bar-inner.danger{background:var(--td)}.stamina-bar{background:var(--sf)}.time-number{font-size:1.3rem;font-weight:800;color:#222;min-width:40px;text-align:center;transition:color .3s,transform .15s}.time-number.tick{animation:numTick .15s ease-out}.time-number.danger{color:#111}.map-selector{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;align-items:center}.map-btn{background:#f5f5f5;border:2px solid #d5d5d5;color:#666;border-radius:20px;padding:5px 12px;font-weight:600;font-size:.78rem;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:4px}.map-btn.active{background:#444;border-color:#333;color:#fff;box-shadow:0 0 12px rgba(0,0,0,.2)}.map-btn.win{background:#e8e8e8;border-color:#999;color:#333}.map-btn.lose{background:#f5f5f5;border-color:#ccc;color:#888}.map-btn.correct-found{background:#e0e0e0;border-color:#555;color:#222}.btn-complete-map{background:var(--cbbg);color:#fff;border:2px solid var(--cbb);border-radius:20px;padding:6px 16px;font-weight:700;font-size:.8rem;cursor:pointer;transition:.2s;white-space:nowrap;letter-spacing:.5px}.btn-complete-map:hover:not(:disabled){background:var(--cbh);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.2)}.btn-complete-map:disabled{background:#ccc;border-color:#b0b0b0;cursor:not-allowed;opacity:.6}.canvas-wrapper{background:#fcfcfc;border-radius:14px;border:2px solid #ddd;display:flex;justify-content:center;width:100%}.canvas-wrapper.inference{border-color:#f90;box-shadow:0 0 20px rgba(255,153,0,.5)}canvas{display:block;max-width:100%;height:auto}.info-bar{width:100%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:.8rem;color:#777}.legend{display:flex;gap:10px;flex-wrap:wrap}.legend-item{display:flex;align-items:center;gap:4px;font-size:.73rem}.legend-dot{width:12px;height:12px;border-radius:50%;border:1.5px solid #999;background:#d0d0d0}.legend-dot.important{background:#666;border-color:#444}.legend-dot.result{background:#888;border-radius:2px;border-color:#666}.legend-dot.skill-node{background:#ccc;border-radius:1px;border:2px solid #999;transform:rotate(45deg);width:10px;height:10px;display:inline-block}.legend-dot.check-ring{background:0 0;border-radius:50%;border:3px solid #444;width:10px;height:10px}.legend-dot.correct-box{background:#555;border-radius:2px;border:2px solid #bbb;width:10px;height:10px}.legend-dot.broken{background:#fff;border-radius:50%;border:1.5px dashed #999;width:10px;height:10px;position:relative}.legend-dot.upgrade-node{background:#fff;border-radius:3px;border:2px solid #f90;width:10px;height:10px;display:inline-block}.btn{padding:10px 22px;border-radius:25px;border:none;font-weight:700;font-size:.9rem;cursor:pointer;letter-spacing:.5px;transition:.2s}.btn-restart{background:var(--brbg);color:#fff}.btn-restart:hover{background:var(--brh);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}.overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.5);z-index:100;display:flex;justify-content:center;align-items:center}.overlay.hidden{display:none}.overlay.start-overlay{background:#fff}.overlay.challenge-overlay-bg{background:#fff;z-index:110}.overlay.shop-overlay-bg{background:rgba(0,0,0,.55);z-index:105}.modal{background:#fff;border-radius:20px;padding:28px 30px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);max-width:900px;width:95%;border:1px solid #ddd;max-height:90vh;overflow-y:auto}.modal h2{font-size:1.7rem;margin-bottom:10px}.win-title{color:#333}.lose-title{color:#666}.partial-title{color:#444}.skill-title{color:#444}.shop-layout{display:flex;gap:20px;text-align:left;align-items:flex-start}.shop-left{flex:1;min-width:280px}.shop-right{width:260px;flex-shrink:0;border-left:2px solid #eee;padding-left:16px;max-height:70vh;overflow-y:auto}.shop-right-title{font-weight:700;font-size:.9rem;color:#333;text-align:center;border-bottom:1px solid #ddd;padding-bottom:6px;margin-bottom:8px}.shop-right-list{display:flex;flex-direction:column;gap:3px;font-size:.73rem}.shop-right-item{display:flex;align-items:center;justify-content:space-between;padding:4px 8px;border-radius:8px;background:#f9f9f9;gap:4px}.shop-right-item.current{background:#e0e0e0;border:1.5px solid #555;font-weight:700}.shop-right-rank{width:24px;text-align:center;font-weight:700;color:#444;flex-shrink:0}.shop-right-name{flex:1;margin:0 4px;color:#222;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;font-weight:bold}.shop-right-score{font-weight:700;color:#333;min-width:40px;text-align:right;flex-shrink:0}.shop-right-empty{color:#888;text-align:center;padding:10px 0;font-style:italic;font-size:.73rem}.shop-right-legend{font-size:.6rem;color:#999;text-align:center;margin-top:4px;border-top:1px solid #eee;padding-top:4px}.stock-section{margin:8px 0;padding:8px 12px;background:#fafbfd;border-radius:12px;border:1px solid #e0e0e0}.stock-section-title{font-weight:700;font-size:.9rem;color:#444;margin-bottom:6px;text-align:center}.stock-item{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;background:#fff;border-radius:8px;margin:3px 0;border:1px solid #eee;gap:6px}.stock-item-name{font-weight:600;font-size:.9rem;color:#444;min-width:50px}.stock-item-count{font-weight:700;font-size:.9rem;color:#333;min-width:16px;text-align:center}.stock-item-cost{font-size:.85rem;color:#888;min-width:55px;text-align:right}.btn-stock-buy{background:#555;color:#fff;border:none;padding:3px 10px;border-radius:10px;font-weight:700;font-size:.8rem;cursor:pointer;transition:.2s}.btn-stock-buy:disabled{background:#ccc;cursor:not-allowed}.btn-stock-buy:hover:not(:disabled){background:#444}.shop-separator{border:none;border-top:2px dashed #ccc;margin:10px 0;width:100%}.shop-section-title{font-size:.9rem;font-weight:700;color:#888;text-align:center;margin:6px 0 2px;letter-spacing:.5px}.shop-item{display:flex;align-items:center;justify-content:space-between;background:#fafafa;padding:8px 12px;border-radius:10px;margin:6px 0;border:1px solid #ddd;font-size:.9rem}.shop-item small{font-size:.85rem}.shop-btn{background:#555;color:#fff;border:none;padding:4px 12px;border-radius:12px;font-weight:700;cursor:pointer;font-size:.8rem}.shop-btn:disabled{background:#ccc}.name-input{padding:12px 20px;border-radius:14px;border:2px solid #ddd;font-size:1.1rem;width:80%;max-width:320px;text-align:center;margin:10px 0}.name-error{color:#b84c3b;font-size:.78rem;font-weight:600;min-height:20px;margin:2px 0;transition:.3s}.btn-start-game{background:#fff;color:#333;padding:18px 48px;border-radius:34px;border:3px solid #333;font-weight:700;font-size:1.3rem;cursor:pointer;letter-spacing:1px;transition:.25s;box-shadow:0 8px 30px rgba(0,0,0,.14);display:block;margin:16px auto}.btn-start-game:hover{background:#f0f0f0;transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.2);border-color:#111}.btn-challenge-open{background:#f5f5f5;color:#555;padding:10px 22px;border-radius:22px;border:2px solid #d0d0d0;font-weight:600;font-size:.85rem;cursor:pointer;transition:.2s;letter-spacing:.5px;margin:8px 0}.btn-challenge-open:hover{background:#e8e8e8;border-color:#aaa;color:#333}.btn-challenge-open.highlighted{background:#fffbe6;border-color:#e6a817;color:#8a6d14;box-shadow:0 0 18px rgba(230,168,23,.4);animation:challengeHighlightPulse 2s infinite}@keyframes challengeHighlightPulse{0%{box-shadow:0 0 12px rgba(230,168,23,.3)}50%{box-shadow:0 0 24px rgba(230,168,23,.6)}100%{box-shadow:0 0 12px rgba(230,168,23,.3)}}.btn-tutorial{background:#f5f5f5;color:#555;padding:10px 22px;border-radius:22px;border:2px solid #d0d0d0;font-weight:600;font-size:.85rem;cursor:pointer;transition:.2s;letter-spacing:.5px;margin:8px 0}.btn-tutorial:hover{background:#e8e8e8;border-color:#aaa;color:#333}.btn-toggle-side{background:#f5f5f5;color:#555;padding:4px 10px;border-radius:12px;border:1px solid #ccc;font-weight:600;font-size:.75rem;cursor:pointer;transition:.2s;margin-left:8px}.btn-toggle-side:hover{background:#e8e8e8;border-color:#aaa;color:#333}.challenge-tier-group{border:3px solid #ddd;border-radius:16px;padding:14px 16px 10px;margin:10px 0;transition:border-color .4s,background-color .4s;background:#fafafa;position:relative}.challenge-tier-group.tier1-active{border-color:#d0c8b8;background:var(--t1bg)}.challenge-tier-group.tier2-active{border-color:#d0b8b8;background:var(--t2bg)}.challenge-tier-group.tier3-active{border-color:#c0a8a8;background:var(--t3bg)}.challenge-tier-group.tier1-exp-active{border-color:#c8b8d8;background:var(--eabg)}.challenge-tier-group.tier2-exp-active{border-color:#c8b8d8;background:var(--eabg)}.challenge-tier-group.tier3-exp-active{border-color:#c8b8d8;background:var(--eabg)}.challenge-tier-group.fun-active{border-color:var(--fb);background:var(--fbg)}.challenge-tier-group.assist-active{border-color:var(--asb)!important;background:var(--asbg)!important}.challenge-tier-title{font-weight:800;font-size:.95rem;color:#333;margin-bottom:4px;letter-spacing:.5px;display:flex;align-items:center;gap:8px;justify-content:center}.challenge-tier-desc{font-size:.7rem;color:#888;text-align:center;margin-bottom:8px;font-style:italic;line-height:1.3}.challenge-tier-divider{border:none;border-top:3px dashed #ccc;margin:14px 0;transition:border-color .4s}.challenge-list{margin-top:0;display:flex;flex-direction:column;gap:8px;text-align:left;padding:0 4px}.challenge-item{display:flex;align-items:center;gap:10px;background:#f8f8f8;border-radius:12px;padding:10px 14px;border:2px solid #e0e0e0;transition:.2s;cursor:pointer;user-select:none;position:relative}.challenge-item:hover{border-color:#bbb;background:#f0f0f0}.challenge-item.manual-enabled{background:#e8e8e8;box-shadow:0 2px 8px rgba(0,0,0,.12)}.challenge-item.tier1-on{border-color:var(--t1b)!important;border-width:3px!important}.challenge-item.tier2-on{border-color:var(--t2b)!important;border-width:3px!important}.challenge-item.tier3-on{border-color:var(--t3b)!important;border-width:3px!important}.challenge-item.exp-override{border-color:var(--eab)!important;border-width:3px!important}.challenge-item.exp-item{cursor:pointer;border-style:dashed;border-color:#d0d0d0;background:#f5f5f5;color:#666}.challenge-item.exp-item.exp-active{border-color:var(--eab);border-style:solid;border-width:3px;background:#f9f4fc;color:#4a2570;cursor:pointer;box-shadow:0 2px 10px rgba(123,63,163,.2);animation:expParticleGlow 2s infinite;position:relative;overflow:visible}.challenge-item.exp-item.exp-active::after{content:'';position:absolute;inset:-6px;border-radius:inherit;pointer-events:none;box-shadow:-2px -2px 0 2px rgba(180,80,220,.8),2px -2px 0 2px rgba(180,80,220,.8),-2px 2px 0 2px rgba(180,80,220,.8),2px 2px 0 2px rgba(180,80,220,.8);animation:particleFlyOut 1.5s infinite}@keyframes particleFlyOut{0%{box-shadow:-2px -2px 0 2px rgba(180,80,220,.8),2px -2px 0 2px rgba(180,80,220,.8),-2px 2px 0 2px rgba(180,80,220,.8),2px 2px 0 2px rgba(180,80,220,.8)}100%{box-shadow:-12px -12px 0 0 rgba(180,80,220,0),12px -12px 0 0 rgba(180,80,220,0),-12px 12px 0 0 rgba(180,80,220,0),12px 12px 0 0 rgba(180,80,220,0)}}.challenge-item.exp-item.exp-locked{cursor:not-allowed;opacity:.5;border-style:dashed;border-color:#ccc;background:#f0f0f0;color:#aaa}@keyframes expParticleGlow{0%{box-shadow:0 0 6px rgba(123,63,163,.3),0 0 20px rgba(123,63,163,.1)}25%{box-shadow:0 0 10px rgba(180,80,220,.5),0 0 30px rgba(123,63,163,.2)}50%{box-shadow:0 0 8px rgba(140,60,180,.4),0 0 25px rgba(150,70,200,.25)}75%{box-shadow:0 0 12px rgba(180,80,220,.5),0 0 35px rgba(123,63,163,.3)}100%{box-shadow:0 0 6px rgba(123,63,163,.3),0 0 20px rgba(123,63,163,.1)}}.challenge-item.fun-item{border-color:#b8d8b8!important;background:#f8fdf8;color:#3a6b3a}.challenge-item.fun-item.fun-active{border-color:var(--fb)!important;border-width:3px!important;background:#e8f5e8;box-shadow:0 2px 10px rgba(74,154,63,.2)}.challenge-item.assist-item{border-color:#b8cfe0!important;background:#f5f9fc;color:#2b5f8a}.challenge-item.assist-item.assist-active{border-color:var(--asb)!important;border-width:3px!important;background:#dceaf5;box-shadow:0 2px 10px rgba(58,122,181,.2)}.challenge-info{flex:1;min-width:0}.challenge-name{font-weight:700;font-size:.85rem;color:#333;display:flex;align-items:center;gap:6px}.challenge-item.exp-item .challenge-name{color:#666}.challenge-item.exp-item.exp-active .challenge-name{color:#4a2570}.challenge-item.fun-item .challenge-name{color:#3a6b3a}.challenge-item.assist-item .challenge-name{color:#2b5f8a}.challenge-desc{font-size:.7rem;color:#777;margin-top:2px;line-height:1.3}.challenge-item.exp-item .challenge-desc{color:#888}.challenge-item.exp-item.exp-active .challenge-desc{color:#6b4a8a}.challenge-item.fun-item .challenge-desc{color:#5a8a5a}.challenge-item.assist-item .challenge-desc{color:#4a7a9a}.challenge-status-badge{display:inline-block;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap;flex-shrink:0;min-width:55px;text-align:center}.challenge-status-badge.on{background:#444;color:#fff}.challenge-status-badge.off{background:#e0e0e0;color:#888}.challenge-status-badge.exp-on{background:#7b3fa3;color:#fff}.challenge-status-badge.exp-off{background:#e8e8e8;color:#aaa}.challenge-status-badge.exp-locked{background:#ddd;color:#bbb}.challenge-status-badge.fun-on{background:#4a9a3f;color:#fff}.challenge-status-badge.fun-off{background:#e0f0e0;color:#6a9a6a}.challenge-status-badge.assist-on{background:#3a7ab5;color:#fff}.challenge-status-badge.assist-off{background:#d6e8f7;color:#5b9bd5}.challenge-info-tip{display:inline-block;cursor:pointer;font-size:.75rem;color:#7b3fa3;font-weight:700;margin-left:4px;background:#f0e8f7;border-radius:50%;width:18px;height:18px;text-align:center;line-height:18px;transition:.2s}.challenge-info-tip:hover{background:#d8c8e8;color:#4a2570}.challenge-tip-popup{display:none;position:fixed;background:#fff;border:2px solid #7b3fa3;border-radius:10px;padding:10px 14px;font-size:.72rem;color:#333;z-index:300;box-shadow:0 6px 24px rgba(0,0,0,.2);max-width:300px;text-align:left;line-height:1.5;pointer-events:none}.challenge-tip-popup.show{display:block}.challenge-summary-row{font-size:.75rem;color:#666;margin-top:6px;text-align:center;font-weight:600}.challenge-section{margin-top:6px;width:100%}.challenge-warning{background:#fff3cd;border:2px solid #ffc107;border-radius:12px;padding:10px 16px;margin-bottom:12px;font-weight:700;font-size:.82rem;color:#856404;text-align:center;letter-spacing:.3px}.challenge-strikethrough{text-decoration:line-through;color:#d94a3a!important;font-weight:700}.inference-help-toggle{cursor:pointer;background:#f0f8ff;border:2px dashed #5b9bd5;border-radius:10px;padding:8px 14px;font-size:.78rem;font-weight:700;color:#2b5f8a;text-align:center;margin-bottom:10px;transition:.2s;user-select:none}.inference-help-toggle:hover{background:#e0effa;border-color:#3a7ab5}.inference-help-content{background:#f8fbff;border:2px solid #d6e8f7;border-radius:10px;padding:12px 16px;margin-bottom:10px;font-size:.72rem;color:#444;text-align:left;line-height:1.6;display:none}.inference-help-content.show{display:block}.inference-help-content .ih-item{display:flex;align-items:flex-start;gap:6px;margin:4px 0}.inference-help-content .ih-icon{flex-shrink:0;font-size:.85rem;min-width:20px;text-align:center}.shop-inference-help{margin-top:4px;margin-bottom:0}.shop-inference-help .inference-help-toggle{font-size:.7rem;padding:5px 10px;margin-bottom:4px}.shop-inference-help .inference-help-content{font-size:.68rem;padding:8px 12px;margin-bottom:4px}.active-skills-bar{width:100%;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:4px 8px;font-size:.7rem;color:#777;min-height:20px}.active-skill-tag{background:#e8e8e8;color:#444;padding:2px 8px;border-radius:10px;font-weight:600;font-size:.68rem;white-space:nowrap}.skill-points-display{font-size:1rem;font-weight:700;color:#444;margin:10px 0;transition:color .3s}.skill-points-display.tick{animation:spTick .4s ease-out}@keyframes spTick{0%{transform:scale(1.3);color:#4caf50}100%{transform:scale(1);color:#444}}.btn-continue{background:#444;color:#fff;padding:10px 24px;border-radius:25px;border:none;font-weight:700;cursor:pointer;margin-top:8px}.btn-continue:hover{background:#333}.btn-giveup{background:#b84c3b;color:#fff;padding:10px 24px;border-radius:25px;border:none;font-weight:700;cursor:pointer;margin-top:8px;margin-left:8px}.btn-giveup:hover{background:#9a3a2b}.btn-confirm{background:#555;color:#fff;padding:10px 24px;border-radius:25px;border:none;font-weight:700;cursor:pointer;margin-top:8px}.btn-confirm:hover{background:#444}.history-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.8rem}.history-table th,.history-table td{padding:6px 10px;border-bottom:1px solid #ddd;text-align:center}.history-table th{background:#f5f5f5;font-weight:700;color:#444}.history-table .pass{color:#333;font-weight:700}.history-table .fail{color:#888;font-weight:700}.correct-found-hint{display:inline-block;background:#e0e0e0;color:#222;padding:4px 10px;border-radius:12px;font-weight:600;font-size:.75rem}.discussion-tag{position:absolute;background:#e8e8e8;border:2px solid #bbb;border-radius:16px;padding:8px 16px;font-weight:700;font-size:.9rem;color:#222;white-space:nowrap;pointer-events:none;animation:discFade 4s forwards;transform-origin:center;z-index:200;box-shadow:0 3px 12px rgba(0,0,0,.08)}.discussion-tag::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #bbb}.discussion-tag::before{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid #e8e8e8;z-index:1;margin-top:-2px}@keyframes discFade{0%{opacity:0}10%{opacity:1}80%{opacity:1}100%{opacity:0}}@keyframes shake{0%{transform:translate(0,0)}25%{transform:translate(-2px,0)}50%{transform:translate(2px,0)}75%{transform:translate(-1px,0)}100%{transform:translate(0,0)}}.shake-node{animation:shake .2s infinite}.sp-earned-display{display:inline-block;font-weight:700;color:#4caf50;font-size:.9rem;transition:opacity .8s;vertical-align:middle;margin-left:4px}.sp-earned-display.fading{opacity:0}.shop-preview-section{margin-top:10px;border-top:2px dashed #ccc;padding-top:8px}.shop-preview-row{display:flex;align-items:center;justify-content:space-between;padding:3px 6px;font-size:.7rem;background:#fafafa;border-radius:6px;margin:2px 0}.shop-preview-label{color:#666;font-weight:600}.shop-preview-value{color:#222;font-weight:700;text-align:right}.exp-tip-text{font-size:.65rem;color:#7b3fa3;text-align:center;margin-top:3px;font-style:italic;font-weight:600}.leaderboard-section{margin-top:12px;border-top:2px dashed #ccc;padding-top:8px}.leaderboard-item{display:flex;align-items:center;justify-content:space-between;padding:3px 6px;font-size:.7rem;background:#fafafa;border-radius:6px;margin:2px 0;gap:4px;flex-wrap:wrap}.leaderboard-rank{width:22px;text-align:center;font-weight:700}.leaderboard-change{width:24px;text-align:center;font-weight:700;font-size:.65rem}.leaderboard-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;font-weight:bold}.leaderboard-score{min-width:40px;text-align:right;font-weight:700}.leaderboard-mini-scores{width:100%;text-align:right;font-size:.6rem;color:#999;margin-top:2px}.leaderboard-mini-scores .mini-score{margin-left:4px;padding:0 2px;border-radius:3px;background:#f0f0f0}.leaderboard-mini-scores .mini-score.pass{color:#4a7c59}.leaderboard-mini-scores .mini-score.fail{color:#b84c3b}.btn-export{background:#555;color:#fff;border:none;padding:6px 12px;border-radius:12px;font-weight:700;font-size:.7rem;cursor:pointer;margin-top:6px;transition:.2s}.btn-export:hover{background:#444}.easy-mode-tip{min-height:20px;font-size:.75rem;font-weight:600;color:#8a6d14;margin:2px 0;transition:.3s;text-align:center}.easy-mode-btn{background:#4caf50;color:#fff;border:none;border-radius:12px;padding:10px 20px;font-weight:700;font-size:.9rem;cursor:pointer;margin:6px 0;transition:.2s;letter-spacing:.5px;width:auto;min-width:180px;box-shadow:0 4px 12px rgba(76,175,80,.3)}.easy-mode-btn:hover{background:#45a049;transform:translateY(-2px);box-shadow:0 6px 16px rgba(76,175,80,.4)}.easy-mode-btn.off{background:#9e9e9e;box-shadow:0 4px 12px rgba(158,158,158,.3)}.easy-mode-btn.off:hover{background:#757575}.shop-tips-panel{background:#fff8e1;border:2px solid #e6a817;border-radius:12px;padding:10px 14px;font-size:.75rem;color:#5a4a1a;text-align:left;width:300px;flex-shrink:0;max-height:90vh;overflow:hidden}.shop-tips-panel .tip-item{background:#fff;border-radius:8px;padding:6px 10px;border:1px solid #f0e0a0;margin-bottom:6px;color:#2d5a2d;font-weight:600;line-height:1.4;box-shadow:0 2px 6px rgba(0,0,0,.04)}.achievement-popup{position:fixed;bottom:20px;right:20px;background:#fff;border:3px solid #f9a825;border-radius:12px;padding:12px 18px;box-shadow:0 8px 25px rgba(0,0,0,.3);z-index:400;font-size:.8rem;font-weight:700;color:#333;animation:achPop .5s ease-out,achFade 4s forwards;max-width:300px}.achievement-popup .ach-title{font-size:.95rem;color:#f57f17}.achievement-popup .ach-desc{font-size:.7rem;color:#666;margin-top:4px}.achievement-popup .ach-score{font-size:.8rem;color:#4caf50;margin-top:2px}@keyframes achPop{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}@keyframes achFade{0%{opacity:1}80%{opacity:1}100%{opacity:0}}.achievement-modal{max-width:700px;width:95%}.achievement-list{text-align:left;max-height:60vh;overflow-y:auto;margin:10px 0}.achievement-item{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid #eee;font-size:.75rem}.achievement-item .ach-name{font-weight:700}.achievement-item .ach-done{color:#4caf50;font-weight:700}.achievement-item .ach-none{color:#aaa}.achievement-item .ach-player{font-size:.65rem;color:#666}.achievement-toggle-btn{background:#ddd;border:2px solid #bbb;border-radius:20px;padding:6px 16px;font-weight:700;cursor:pointer;margin:0 5px}.achievement-toggle-btn.active{background:#444;color:#fff;border-color:#333}.shop-main-flex{display:flex;gap:20px;align-items:flex-start;justify-content:center;flex-wrap:nowrap}.shop-main-flex .shop-layout{flex:1 1 auto}.shop-overlay-bg .modal{max-width:950px;flex:1 1 auto;max-height:90vh;overflow-y:auto}.btn-clear-achievements{background:#b84c3b;color:#fff;padding:10px 24px;border-radius:25px;border:none;font-weight:700;cursor:pointer;margin-top:8px;margin-left:8px}.btn-clear-achievements:hover{background:#9a3a2b}.btn-clear-achievements.confirm{background:#8b1a1a;animation:clearPulse 1s infinite}@keyframes clearPulse{0%{opacity:1}50%{opacity:.7}100%{opacity:1}}
 </style></head><body>
@@ -101,6 +101,9 @@ let gameStartTime=0,mapNonCorrectUnlockedCount=0,everBoughtStock=!1;
 let sessionAchievements=new Set();
 let achievementMode='normal';
 let clearAchConfirm=false;
+let hasShownEasyHint=false;
+let pendingEasyHint=false;
+let lastMouseCanvasPos=null;
 const achievements=[
 {id:'helloworld',name:'HelloWorld',desc:'AC 一道题目',check:()=>maps.some(m=>m.maxResultScore===100&&m.gameResult==='win')},
 {id:'first_win',name:'首战告捷',desc:'通过 CSP-S',check:()=>levelHistory.some(e=>e.level===1&&e.passed&&!e.sim)},
@@ -128,15 +131,80 @@ let totalReachPassTime=null;
 let achievementData={simple:{},normal:{}};
 try{const raw=localStorage.getItem('oi_achievements');if(raw)achievementData=JSON.parse(raw);}catch(e){}
 function saveAchievements(){localStorage.setItem('oi_achievements',JSON.stringify(achievementData));}
-function unlockAchievement(id){if(easyMode)return;if(sessionAchievements.has(id))return;const ach=achievements.find(a=>a.id===id);if(!ach)return;const mode='normal';if(achievementData[mode][id]){sessionAchievements.add(id);updateSessionAchievements();return;}achievementData[mode][id]={player:playerName||'??',timestamp:Date.now()};saveAchievements();sessionAchievements.add(id);totalHistScore+=100;updateSessionAchievements();showAchievementPopup(ach);}
-function showAchievementPopup(ach){const cont=document.getElementById('achievementPopupContainer');const div=document.createElement('div');div.className='achievement-popup';div.innerHTML=`<div class="ach-title">🏅 成就达成：${ach.name}</div><div class="ach-desc">${ach.desc}</div><div class="ach-score">+100 总分</div>`;cont.appendChild(div);setTimeout(()=>div.remove(),4000);}
-function updateSessionAchievements(){const list=document.getElementById('sessionAchievementsList');if(!list)return;if(sessionAchievements.size===0){list.textContent='暂无成就';return}let html='';sessionAchievements.forEach(id=>{const ach=achievements.find(a=>a.id===id);if(ach)html+=`<div>🏅 ${ach.name}</div>`});list.innerHTML=html;}
-function checkAchievements(){achievements.forEach(a=>{if(!sessionAchievements.has(a.id)&&a.check())unlockAchievement(a.id)});}
+function unlockAchievement(id){
+    if(easyMode)return;
+    if(sessionAchievements.has(id))return;
+    const ach=achievements.find(a=>a.id===id);
+    if(!ach)return;
+    const mode='normal';
+    if(!achievementData[mode][id]){
+        achievementData[mode][id]={player:playerName||'??',timestamp:Date.now()};
+        saveAchievements();
+    }
+    sessionAchievements.add(id);
+    const multiplier = getScoreMultiplier(cfgL(level).sim);
+    totalHistScore += 100 * multiplier;
+    updateSessionAchievements();
+    showAchievementPopup(ach);
+}
+function showAchievementPopup(ach){
+    const cont=document.getElementById('achievementPopupContainer');
+    const div=document.createElement('div');
+    div.className='achievement-popup';
+    div.innerHTML=`<div class="ach-title">🏅 成就达成：${ach.name}</div><div class="ach-desc">${ach.desc}</div><div class="ach-score">+${100*getScoreMultiplier(cfgL(level).sim)} 总分</div>`;
+    cont.appendChild(div);
+    setTimeout(()=>div.remove(),4000);
+}
+function updateSessionAchievements(){
+    const list=document.getElementById('sessionAchievementsList');
+    if(!list)return;
+    if(sessionAchievements.size===0){list.textContent='暂无成就';return}
+    let html='';
+    sessionAchievements.forEach(id=>{
+        const ach=achievements.find(a=>a.id===id);
+        if(ach)html+=`<div>🏅 ${ach.name}</div>`;
+    });
+    list.innerHTML=html;
+}
+function checkAchievements(){
+    achievements.forEach(a=>{
+        if(!sessionAchievements.has(a.id)&&a.check())unlockAchievement(a.id);
+    });
+}
 function loadEasySettings(){try{easyMode=localStorage.getItem('oi_easy_mode')==='true'}catch(e){easyMode=false}try{hasPlayedBefore=localStorage.getItem('oi_has_played_before')==='true'}catch(e){hasPlayedBefore=false}try{everGotNOIMedal=localStorage.getItem('oi_got_noi_medal')==='true'}catch(e){everGotNOIMedal=false}try{easyModeAutoSet=localStorage.getItem('oi_easy_mode_auto_set')==='true'}catch(e){easyModeAutoSet=false}}
 function saveEasySettings(){localStorage.setItem('oi_easy_mode',String(easyMode));localStorage.setItem('oi_has_played_before',String(hasPlayedBefore));localStorage.setItem('oi_got_noi_medal',String(everGotNOIMedal));localStorage.setItem('oi_easy_mode_auto_set',String(easyModeAutoSet))}
 function getSimpleStamina(lv){if(!easyMode)return null;if(lv===4)return 35;if(lv>=5&&lv<=10)return 60;if(lv>=11)return 75;return null}
-const LV=[{name:'CSP-S模拟赛',maps:4,pass:200,stam:25,sim:!0},{name:'CSP-S',maps:4,pass:200,stam:25,sim:!1},{name:'NOIP模拟赛1',maps:4,pass:200,stam:35,sim:!0},{name:'NOIP模拟赛2',maps:4,pass:200,stam:35,sim:!0},{name:'NOIP',maps:4,pass:200,stam:35,sim:!1},{name:'省选模拟赛1',maps:6,pass:400,stam:45,sim:!0},{name:'省选模拟赛2',maps:6,pass:400,stam:45,sim:!0},{name:'省选',maps:6,pass:400,stam:45,sim:!1},{name:'NOI模拟赛1',maps:6,pass:400,stam:45,sim:!0},{name:'NOI模拟赛2',maps:6,pass:400,stam:45,sim:!0},{name:'NOI',maps:6,pass:400,stam:45,sim:!1},{name:'CTT',maps:6,pass:400,stam:45,sim:!1},{name:'CTS',maps:6,pass:400,stam:45,sim:!1},{name:'IOI',maps:6,pass:0,stam:45,sim:!1}];
-const TIPS=['你知道吗，题目难度是根据题目顺序排的','时间是非常重要的资源，多找时间库存，多买时间，这样等到后面你会很轻松的。','思维很重要，如果你思维不足会消耗大量精力，让你无法探索','寻找正确节点是有策略的，不要在一条分支里卡到死，多看看别处，指不定正确节点非常浅呢。','你知道吗，省选及以后有 6 道题的比赛是按 T1、T4，然后 T2、T5，最后是 T3、T6 来难度分级的。不要一道一道的做。','推理是十分好的东西，它可以花费精力节约时间，但是你要收集很多思维来少花点精力。','食物对于推理是十分重要的，精力越多，你就能进行越多推理。并且有些还有特殊效果。所以花点技能点买食物吧。','不要吝啬时间和精力，大胆聚焦推理，你会得到宝贵的信息。','骗分也是不错的策略，如果你不能找到正确的节点，为什么不找个 80 分的呢。','其实振奋对于推理是十分超模的结构，你会得到很多精力的。','恭喜进入游戏后期，难度会很大，善用推理和聚焦，以及多吃点食物。','看来你已经掌握技巧了，继续前进吧，闯过下一关就是 IOI！','把你的技能点全部用上，你现在只有一个目标，在 IOI 中打出最好的成绩。'];
+const LV=[
+{name:'CSP-S模拟赛',maps:4,pass:200,stam:25,sim:!0},
+{name:'CSP-S',maps:4,pass:200,stam:25,sim:!1},
+{name:'NOIP模拟赛1',maps:4,pass:200,stam:35,sim:!0},
+{name:'NOIP模拟赛2',maps:4,pass:200,stam:35,sim:!0},
+{name:'NOIP',maps:4,pass:200,stam:35,sim:!1},
+{name:'省选模拟赛1',maps:6,pass:400,stam:45,sim:!0},
+{name:'省选模拟赛2',maps:6,pass:400,stam:45,sim:!0},
+{name:'省选',maps:6,pass:400,stam:45,sim:!1},
+{name:'NOI模拟赛1',maps:6,pass:400,stam:45,sim:!0},
+{name:'NOI模拟赛2',maps:6,pass:400,stam:45,sim:!0},
+{name:'NOI',maps:6,pass:400,stam:45,sim:!1},
+{name:'CTT',maps:6,pass:400,stam:45,sim:!1},
+{name:'CTS',maps:6,pass:400,stam:45,sim:!1},
+{name:'IOI',maps:6,pass:0,stam:45,sim:!1}
+];
+const TIPS=[
+'时间是非常重要的资源，多找时间库存，多买时间，这样等到后面你会很轻松的。',
+'你知道吗，题目在 NOIP 及以后因为毒瘤出题人难度是打乱的。',
+'思维很重要，如果你思维不足会消耗大量精力，让你无法探索',
+'寻找正确节点是有策略的，不要在一条分支里卡到死，多看看别处，指不定正确节点非常浅呢。',
+'推理是十分好的东西，它可以花费精力节约时间，但是你要收集很多思维来少花点精力。',
+'多多达成成就，达成成就可以获得分数，冲击高分',
+'食物对于推理是十分重要的，精力越多，你就能进行越多推理。并且有些还有特殊效果。所以花点技能点买食物吧。',
+'不要吝啬时间和精力，大胆聚焦推理，你会得到宝贵的信息。',
+'骗分也是不错的策略，如果你不能找到正确的节点，为什么不找个 80 分的呢。',
+'其实振奋对于推理是十分超模的结构，你会得到很多精力的。',
+'恭喜进入游戏后期，难度会很大，善用推理和聚焦，以及多吃点食物。',
+'看来你已经掌握技巧了，继续前进吧，闯过下一关就是 IOI！',
+'把你的技能点全部用上，你现在只有一个目标，在 IOI 中打出最好的成绩。'
+];
 function maybeAddTip(lv){if(lv>=0&&lv<TIPS.length&&!tipsQueue.includes(lv)){tipsQueue.push(lv)}}
 function renderTipsPanel(){const panel=document.getElementById('shopTipsPanel');if(!panel)return;panel.innerHTML='';tipsQueue.forEach(lv=>{const tip=document.createElement('div');tip.className='tip-item';tip.textContent=TIPS[lv];panel.appendChild(tip)});fitTipsPanel()}
 function fitTipsPanel(){const panel=document.getElementById('shopTipsPanel');if(!panel||panel.clientHeight===0)return;while(panel.scrollHeight>panel.clientHeight&&panel.children.length>0){panel.removeChild(panel.firstChild)}}
@@ -163,14 +231,36 @@ function updateExp(){if(!canExp('I_exp'))ch.I_exp=!1;if(!canExp('II_exp'))ch.II_
 function hasPassedNOIP(){return levelHistory.some(e=>e.level===4&&e.passed&&!e.sim)}
 function hasPassedIOI(){return levelHistory.some(e=>e.level===13&&e.passed&&!e.sim&&e.easyMode===false&&(e.medal==='gold'||e.medal==='god'))}
 function updateChallengeBtnHighlight(){const btn=document.getElementById('btnOpenChallenge');if(btn){if(hasPassedIOI()){btn.classList.add('highlighted')}else{btn.classList.remove('highlighted')}}const warning=document.getElementById('challengeWarning');if(warning){warning.textContent=hasPassedIOI()?'✅ 你已在非简单模式下获得IOI金牌，可以挑战了':'⚠️ 如果你还没有在非简单模式下通关过游戏拿到IOI金牌，那么建议你先通关游戏';}}
-function syncChUI(){updateExp();const man=['I','II','III','IV','V','VI','VII','VIII','IX','X'],ex=['I_exp','II_exp','III_exp'],fu=['fun_I','fun_II'],as=['assist_I'],t1=['I','II','III'],t2=['IV','V','VI','VII'],t3=['VIII','IX','X'];
-man.forEach(k=>{const it=document.getElementById('ch'+k),bd=document.getElementById(getBadge(k));if(it){it.classList.toggle('manual-enabled',ch[k]);it.classList.remove('tier1-on','tier2-on','tier3-on','exp-override');if(t1.includes(k)){if(ch.I_exp)it.classList.add('exp-override');else if(ch[k])it.classList.add('tier1-on')}else if(t2.includes(k)){if(ch.II_exp)it.classList.add('exp-override');else if(ch[k])it.classList.add('tier2-on')}else if(t3.includes(k)){if(ch.III_exp)it.classList.add('exp-override');else if(ch[k])it.classList.add('tier3-on')}}if(bd){bd.textContent=ch[k]?'开启':'关闭';bd.className='challenge-status-badge '+(ch[k]?'on':'off')}});
-ex.forEach(k=>{const it=document.getElementById('ch'+k[0].toUpperCase()+k.slice(1).replace(/_/g,'')),bd=document.getElementById(getBadge(k)),ce=canExp(k);if(it){it.classList.remove('exp-active','exp-locked');if(ch[k])it.classList.add('exp-active');else if(!ce)it.classList.add('exp-locked')}if(bd){if(ch[k]){bd.textContent='已激活';bd.className='challenge-status-badge exp-on'}else if(ce){bd.textContent='可激活';bd.className='challenge-status-badge exp-off'}else{bd.textContent='锁定';bd.className='challenge-status-badge exp-locked'}}});
-fu.forEach(k=>{const it=document.getElementById('ch'+k[0].toUpperCase()+k.slice(1).replace(/_/g,'')),bd=document.getElementById(getBadge(k));if(it)it.classList.toggle('fun-active',ch[k]);if(bd){bd.textContent=ch[k]?'开启':'关闭';bd.className='challenge-status-badge '+(ch[k]?'fun-on':'fun-off')}});
-as.forEach(k=>{const it=document.getElementById('ch'+k[0].toUpperCase()+k.slice(1).replace(/_/g,'')),bd=document.getElementById(getBadge(k));if(it)it.classList.toggle('assist-active',ch[k]);if(bd){bd.textContent=ch[k]?'开启':'关闭';bd.className='challenge-status-badge '+(ch[k]?'assist-on':'assist-off')}});
-updateTierStyles();updateSumRow();updateChallengeBtnHighlight()}
-function updateTierStyles(){const t1=document.getElementById('tier1Group'),t2=document.getElementById('tier2Group'),t3=document.getElementById('tier3Group'),fg=document.getElementById('funGroup'),ag=document.getElementById('assistGroup');if(t1){t1.classList.remove('tier1-active','tier1-exp-active');if(ch.I_exp)t1.classList.add('tier1-exp-active');else if(ch.I||ch.II||ch.III)t1.classList.add('tier1-active')}if(t2){t2.classList.remove('tier2-active','tier2-exp-active');if(ch.II_exp)t2.classList.add('tier2-exp-active');else if(ch.IV||ch.V||ch.VI||ch.VII)t2.classList.add('tier2-active')}if(t3){t3.classList.remove('tier3-active','tier3-exp-active');if(ch.III_exp)t3.classList.add('tier3-exp-active');else if(ch.VIII||ch.IX||ch.X)t3.classList.add('tier3-active')}if(fg){fg.classList.toggle('fun-active',ch.fun_I||ch.fun_II)}if(ag){ag.classList.toggle('assist-active',ch.assist_I)}}
-function updateSumRow(){const el=document.getElementById('challengeSummaryRow');if(!el)return;const a=[];if(ch.I)a.push('I');if(ch.II)a.push('II');if(ch.III)a.push('III');if(ch.I_exp)a.push('I-EXP');if(ch.IV)a.push('IV');if(ch.V)a.push('V');if(ch.VI)a.push('VI');if(ch.VII)a.push('VII');if(ch.II_exp)a.push('II-EXP');if(ch.VIII)a.push('VIII');if(ch.IX)a.push('IX');if(ch.X)a.push('X');if(ch.III_exp)a.push('III-EXP');if(ch.assist_I)a.push('辅助I');if(ch.fun_I)a.push('FunI');if(ch.fun_II)a.push('FunII');el.innerHTML=a.length?'已启用：'+a.join(', '):'未启用'}
+function syncChUI(){
+    updateExp();
+    const man=['I','II','III','IV','V','VI','VII','VIII','IX','X'],ex=['I_exp','II_exp','III_exp'],fu=['fun_I','fun_II'],as=['assist_I'],t1=['I','II','III'],t2=['IV','V','VI','VII'],t3=['VIII','IX','X'];
+    man.forEach(k=>{
+        const it=document.getElementById('ch'+k),bd=document.getElementById(getBadge(k));
+        if(it){it.classList.toggle('manual-enabled',ch[k]);it.classList.remove('tier1-on','tier2-on','tier3-on','exp-override');if(t1.includes(k)){if(ch.I_exp)it.classList.add('exp-override');else if(ch[k])it.classList.add('tier1-on')}else if(t2.includes(k)){if(ch.II_exp)it.classList.add('exp-override');else if(ch[k])it.classList.add('tier2-on')}else if(t3.includes(k)){if(ch.III_exp)it.classList.add('exp-override');else if(ch[k])it.classList.add('tier3-on')}}
+        if(bd){bd.textContent=ch[k]?'开启':'关闭';bd.className='challenge-status-badge '+(ch[k]?'on':'off')}
+    });
+    ex.forEach(k=>{
+        const it=document.getElementById('ch'+k[0].toUpperCase()+k.slice(1).replace(/_/g,'')),bd=document.getElementById(getBadge(k)),ce=canExp(k);
+        if(it){it.classList.remove('exp-active','exp-locked');if(ch[k])it.classList.add('exp-active');else if(!ce)it.classList.add('exp-locked')}
+        if(bd){if(ch[k]){bd.textContent='已激活';bd.className='challenge-status-badge exp-on'}else if(ce){bd.textContent='可激活';bd.className='challenge-status-badge exp-off'}else{bd.textContent='锁定';bd.className='challenge-status-badge exp-locked'}}
+    });
+    fu.forEach(k=>{const it=document.getElementById('ch'+k[0].toUpperCase()+k.slice(1).replace(/_/g,'')),bd=document.getElementById(getBadge(k));if(it)it.classList.toggle('fun-active',ch[k]);if(bd){bd.textContent=ch[k]?'开启':'关闭';bd.className='challenge-status-badge '+(ch[k]?'fun-on':'fun-off')}});
+    as.forEach(k=>{const it=document.getElementById('ch'+k[0].toUpperCase()+k.slice(1).replace(/_/g,'')),bd=document.getElementById(getBadge(k));if(it)it.classList.toggle('assist-active',ch[k]);if(bd){bd.textContent=ch[k]?'开启':'关闭';bd.className='challenge-status-badge '+(ch[k]?'assist-on':'assist-off')}});
+    updateTierStyles();updateSumRow();updateChallengeBtnHighlight();
+}
+function updateTierStyles(){
+    const t1=document.getElementById('tier1Group'),t2=document.getElementById('tier2Group'),t3=document.getElementById('tier3Group'),fg=document.getElementById('funGroup'),ag=document.getElementById('assistGroup');
+    if(t1){t1.classList.remove('tier1-active','tier1-exp-active');if(ch.I_exp)t1.classList.add('tier1-exp-active');else if(ch.I||ch.II||ch.III)t1.classList.add('tier1-active')}
+    if(t2){t2.classList.remove('tier2-active','tier2-exp-active');if(ch.II_exp)t2.classList.add('tier2-exp-active');else if(ch.IV||ch.V||ch.VI||ch.VII)t2.classList.add('tier2-active')}
+    if(t3){t3.classList.remove('tier3-active','tier3-exp-active');if(ch.III_exp)t3.classList.add('tier3-exp-active');else if(ch.VIII||ch.IX||ch.X)t3.classList.add('tier3-active')}
+    if(fg){fg.classList.toggle('fun-active',ch.fun_I||ch.fun_II)}
+    if(ag){ag.classList.toggle('assist-active',ch.assist_I)}
+}
+function updateSumRow(){
+    const el=document.getElementById('challengeSummaryRow');if(!el)return;
+    const a=[];if(ch.I)a.push('I');if(ch.II)a.push('II');if(ch.III)a.push('III');if(ch.I_exp)a.push('I-EXP');if(ch.IV)a.push('IV');if(ch.V)a.push('V');if(ch.VI)a.push('VI');if(ch.VII)a.push('VII');if(ch.II_exp)a.push('II-EXP');if(ch.VIII)a.push('VIII');if(ch.IX)a.push('IX');if(ch.X)a.push('X');if(ch.III_exp)a.push('III-EXP');if(ch.assist_I)a.push('辅助I');if(ch.fun_I)a.push('FunI');if(ch.fun_II)a.push('FunII');
+    el.innerHTML=a.length?'已启用：'+a.join(', '):'未启用';
+}
 function toggleCh(k){const man=['I','II','III','IV','V','VI','VII','VIII','IX','X'],ex=['I_exp','II_exp','III_exp'],fu=['fun_I','fun_II'],as=['assist_I'];if(man.includes(k)){ch[k]=!ch[k];updateExp();syncChUI()}else if(ex.includes(k)){if(!canExp(k)&&!ch[k])return;ch[k]=!ch[k];updateExp();syncChUI()}else if(fu.includes(k)){ch[k]=!ch[k];syncChUI()}else if(as.includes(k)){ch[k]=!ch[k];syncChUI()}}
 function initChClicks(){['I','II','III','I_exp','IV','V','VI','VII','II_exp','VIII','IX','X','III_exp','fun_I','fun_II','assist_I'].forEach(k=>{const id='ch'+k[0].toUpperCase()+k.slice(1).replace(/_/g,''),el=document.getElementById(id);if(el)el.addEventListener('click',()=>toggleCh(k))})}
 function resizeC(){const w=canvas.parentElement.clientWidth,scale=Math.min(1,w/LW);canvas.style.width=(LW*scale)+'px';canvas.style.height=(LH*scale)+'px'}
@@ -267,7 +357,24 @@ function getInferenceBaseReq(node,map){
 function applyTimeToSp(){if(!shop.timeToSp||ch.fun_I||ch.fun_II)return 0;const bonus=Math.floor(remTime/4);if(bonus>0){sp+=bonus;timeToSpBonusPending+=bonus;syncAllSp()}return bonus}
 function getFoodCost(key){const base={shriek:1,snickers:2,coffee:4};let cost=base[key]||0;if(level>=4)cost*=2;return cost}
 function forceResetSettling(){if(settling){settling=!1;if(settlingTimeout){clearTimeout(settlingTimeout);settlingTimeout=null}}}
-function recordScore(){if(!playerName||scoreRecordedForLevel===level)return;const data=loadLB();let player=data.players.find(p=>p.name===playerName);if(!player){player={name:playerName,scores:[],matchScores:[]};data.players.push(player)}const histEntry=levelHistory.find(e=>e.level===level);const matchScore=histEntry?histEntry.totalScore:0;const passed=histEntry?histEntry.passed:false;const sim=histEntry?histEntry.sim:false;if(!player.matchScores)player.matchScores=[];player.matchScores[level]={level,name:histEntry?histEntry.name:'',matchScore,passed,sim};if(player.scores.length<=level)player.scores.push(totalHistScore);else player.scores[level]=totalHistScore;scoreRecordedForLevel=level;saveLB(data);updateLeaderboardUI()}
+function recordScore(){
+    if(!playerName||scoreRecordedForLevel===level)return;
+    const data=loadLB();
+    let player=data.players.find(p=>p.name===playerName);
+    if(!player){player={name:playerName,scores:[],matchScores:[]};data.players.push(player)}
+    const histEntry=levelHistory.find(e=>e.level===level);
+    const matchScore=histEntry?histEntry.totalScore:0;
+    const passed=histEntry?histEntry.passed:false;
+    const sim=histEntry?histEntry.sim:false;
+    if(!player.matchScores)player.matchScores=[];
+    player.matchScores[level]={level,name:histEntry?histEntry.name:'',matchScore,passed,sim};
+    if(player.scores.length<=level)player.scores.push(totalHistScore);
+    else player.scores[level]=totalHistScore;
+    player.lastUpdateTime = Date.now();
+    scoreRecordedForLevel=level;
+    saveLB(data);
+    updateLeaderboardUI();
+}
 function getChallengeScoreBonus(){let bonus=0;['I','II','III','IV','V','VI','VII','VIII','IX','X'].forEach(k=>{ if(ch[k]) bonus+=0.1; });if(ch.assist_I) bonus+=0.1;if(ch.fun_I) bonus+=0.1;if(ch.fun_II) bonus+=0.1;['I_exp','II_exp','III_exp'].forEach(k=>{ if(ch[k]) bonus+=0.2; });return bonus;}
 function getScoreMultiplier(isSim){let base = isSim?1:3;let mult = base + getChallengeScoreBonus();if(easyMode) mult *= 0.5;return mult;}
 function checkAllComplete(){if(settling)return;if(!maps.every(m=>m.gameOver))return;settling=!0;if(settlingTimeout){clearTimeout(settlingTimeout)}settlingTimeout=setTimeout(()=>{forceResetSettling()},8000);stopChTimer();let ts=maps.reduce((s,m)=>s+m.maxResultScore,0);const cfg=cfgL(level);const isNOI=level===10,isIOI=level===13,isCTT=level===11,isCTS=level===12;
@@ -352,13 +459,15 @@ function drawTree(map){ctx.clearRect(0,0,LW,LH);ctx.fillStyle='#fcfcfc';ctx.fill
 function drawEdge(p,c){let col='#999';if(p.state==='correct'&&c.state==='correct')col='#555';else if(p.state==='incorrect'||c.state==='incorrect')col='#bbb';ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(c.x,c.y);ctx.stroke()}
 function drawNode(node,map){let cx=node.x,cy=node.y;const baseR=node.type==='important'?22:20;let r=baseR;const anim=nodeAnimations[node.id];if(anim&&anim.type==='unlock'){const elapsed=performance.now()-anim.start;const p=Math.min(1,elapsed/anim.dur);if(p<1){const scale=1+0.35*Math.sin(p*Math.PI);r=baseR*scale}else{delete nodeAnimations[node.id]}}const effMind=getEffMind();const baseInferReq=getInferenceBaseReq(node,map);const infRequired=baseInferReq;let fill,stroke,tc,alpha=1;const isGrayInfer=inferMode&&node.state==='unlocked'&&effMind<infRequired;switch(node.state){case'visible_locked':fill=node.type==='process'?'#d5d5d5':(node.type==='important'?'#888':'#999');stroke='#b0b0b0';tc=node.type==='important'?'#fff':'#444';break;case'unlocked':if(isGrayInfer){fill='#c8c8c8';stroke='#a0a0a0';tc='#888';alpha=0.45}else{fill='#3a3a3a';stroke='#1a1a1a';tc='#fff'}break;case'correct':fill='#3a3a3a';stroke='#1a1a1a';tc='#fff';break;case'incorrect':fill='#fff';stroke='#999';tc='#555';break;default:return}if(node.upgradeType&&(node.state==='unlocked'||node.state==='correct'||node.state==='incorrect'||node.state==='visible_locked')){ctx.save();ctx.globalAlpha=alpha;let ugCol='#f90';if(node.upgradeType==='time')ugCol='#5b9bd5';else if(node.upgradeType==='mind')ugCol='#e8943a';else if(node.upgradeType==='boost')ugCol='#9b59b6';else if(node.upgradeType==='inspire')ugCol='#d4a017';ctx.strokeStyle=ugCol;ctx.lineWidth=3;ctx.setLineDash([3,2]);const ur=r+7;ctx.beginPath();ctx.arc(cx,cy,ur,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);ctx.restore()}const ir=map.inferResults.get(node.id);if(ir&&node.state==='unlocked'&&!isGrayInfer){if(ir.containsCorrect){ctx.save();ctx.globalAlpha=alpha;ctx.strokeStyle='#f90';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();if(node.type==='result'){const hs=r*0.85;ctx.rect(cx-hs-4,cy-hs-4,(hs+4)*2,(hs+4)*2)}else if(node.type==='skill'){ctx.moveTo(cx,cy-r-4);ctx.lineTo(cx+r+4,cy);ctx.lineTo(cx,cy+r+4);ctx.lineTo(cx-r-4,cy);ctx.closePath()}else{ctx.arc(cx,cy,r+4,0,Math.PI*2)}ctx.stroke();ctx.setLineDash([]);ctx.restore()}if(ir.maxScoreZero){ctx.save();ctx.globalAlpha=alpha;ctx.strokeStyle='#d00';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx-r,cy-r);ctx.lineTo(cx+r,cy+r);ctx.moveTo(cx+r,cy-r);ctx.lineTo(cx-r,cy+r);ctx.stroke();ctx.restore()}if(ir.hasSkillNode){ctx.save();ctx.globalAlpha=alpha;ctx.fillStyle='#3399ff';ctx.strokeStyle='#1a5276';ctx.lineWidth=1.5;ctx.beginPath();const d=6;ctx.moveTo(cx+r+4,cy+r+4);ctx.lineTo(cx+r+4+d,cy+r+4);ctx.lineTo(cx+r+4,cy+r+4+d);ctx.lineTo(cx+r+4-d,cy+r+4);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore()}if(ir.highReq&&!node._shake){node._shake=!0;startShake()}if(ir.upgradeStocks&&ir.upgradeStocks.length>0){ctx.save();ctx.globalAlpha=alpha;ctx.font='bold 11px sans-serif';ctx.textAlign='center';let ugy=cy+r+18;ir.upgradeStocks.forEach(ut=>{let uicon='';if(ut==='time')uicon='⏰';else if(ut==='mind')uicon='🧠';else if(ut==='boost')uicon='💠';else if(ut==='inspire')uicon='⚡';ctx.fillText(uicon,cx,ugy);ugy+=14});ctx.restore()}}ctx.save();ctx.globalAlpha=alpha;if(node.type==='skill'){stroke=node.state==='incorrect'?'#999':(node.state==='correct'?'#1a1a1a':(isGrayInfer?'#a0a0a0':'#aaa'));ctx.fillStyle=fill;ctx.strokeStyle=stroke;ctx.lineWidth=2.5;if(node.state==='incorrect')ctx.setLineDash([5,3]);ctx.beginPath();ctx.moveTo(cx,cy-r);ctx.lineTo(cx+r,cy);ctx.lineTo(cx,cy+r);ctx.lineTo(cx-r,cy);ctx.closePath();ctx.fill();ctx.stroke();ctx.setLineDash([]);node._b={x:cx-r,y:cy-r,w:r*2,h:r*2}}else if(node.type==='result'){const hs=r*0.85;ctx.fillStyle=fill;ctx.strokeStyle=stroke;ctx.lineWidth=2.5;if(node.state==='incorrect')ctx.setLineDash([5,3]);ctx.beginPath();ctx.rect(cx-hs,cy-hs,hs*2,hs*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);node._b={x:cx-hs,y:cy-hs,w:hs*2,h:hs*2}}else{ctx.fillStyle=fill;ctx.strokeStyle=stroke;ctx.lineWidth=2.5;if(node.state==='incorrect')ctx.setLineDash([5,3]);ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);node._b=null}if(node.state==='incorrect'&&node._b){const rng=seedR(node.id.split('').reduce((h,c)=>h*31+c.charCodeAt(0),0));for(let i=0;i<3;i++){const ang=rng()*Math.PI*2,len=(node.type==='result'?r*0.85:r)*(0.65+rng()*0.5),sx=cx+Math.cos(ang)*len*0.3,sy=cy+Math.sin(ang)*len*0.3,ex=cx+Math.cos(ang)*len,ey=cy+Math.sin(ang)*len;ctx.strokeStyle='#aaa';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(ex,ey);ctx.stroke();const pa=ang+Math.PI/2,bl=len*0.25,mx=(sx+ex)/2,my=(sy+ey)/2;ctx.beginPath();ctx.moveTo(mx,my);ctx.lineTo(mx+Math.cos(pa)*bl,my+Math.sin(pa)*bl);ctx.stroke()}}if(node.state==='correct'){const bs=(node.type==='result'?r*0.85:r)+7;ctx.strokeStyle='#bbb';ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.beginPath();ctx.rect(cx-bs,cy-bs,bs*2,bs*2);ctx.stroke();ctx.setLineDash([])}if(node.state==='unlocked'){const showRing=node.type==='important'||node.type==='result'||node.type==='skill';if(showRing&&!map.gameOver&&!isGrayInfer){const rr=(node.type==='result'?r*0.85:r)+5;ctx.strokeStyle='#333';ctx.lineWidth=2.8;ctx.beginPath();ctx.arc(cx,cy,rr,0,Math.PI*2);ctx.stroke();node._cb={x:cx-rr-3,y:cy-rr-3,w:(rr+3)*2,h:(rr+3)*2}}else node._cb=null}else node._cb=null;if(node.state==='visible_locked'&&!map.gameOver){const rr=(node.type==='result'?r*0.85:r)+5;node._cb={x:cx-rr-3,y:cy-rr-3,w:(rr+3)*2,h:(rr+3)*2}}if(inferMode&&node.state==='unlocked'&&!isGrayInfer&&shop.sharpIntuition){const maxSub=getMaxSub(node);if(maxSub>0){ctx.fillStyle='#f90';ctx.font='bold 9px sans-serif';ctx.textAlign='center';ctx.fillText('max:'+maxSub,cx,cy-r-15)}}if(inferMode&&node.state==='unlocked'){ctx.fillStyle=isGrayInfer?'#999':'#f90';ctx.font='bold 10px sans-serif';ctx.textAlign='center';ctx.fillText('🧠≥'+baseInferReq,cx,cy-r-20)}if(ir&&!inferMode&&node.state==='unlocked'){ctx.save();ctx.fillStyle='#f90';ctx.font='bold 8px sans-serif';ctx.textAlign='center';let tag='';if(ir.containsCorrect)tag+='✓';if(ir.maxScoreZero)tag+='✗';if(ir.highReq)tag+='⚠';if(tag)ctx.fillText(tag,cx,cy+r+24);ctx.restore()}if(node.state==='incorrect'){const sc=getMaxSub(node);ctx.fillStyle='#888';ctx.font='bold 14px sans-serif';ctx.textAlign='center';ctx.fillText(sc,cx,cy)}else{ctx.fillStyle=tc;ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillText(node.name,cx,cy);if((node.type==='result'||node.type==='skill')&&node.score!==null&&(node.state==='unlocked'||node.state==='correct')){ctx.font='bold 9px sans-serif';ctx.fillText(ch.fun_I?0:node.score,cx,cy+12)}}const stCost=staminaCost(node);ctx.fillStyle=stCost<=1?'#aaa':(stCost<=3?'#777':(stCost===4?'#444':'#222'));ctx.font='bold 10px sans-serif';ctx.textAlign='center';ctx.fillText(stCost,cx,cy-r-3);ctx.fillStyle=(node.state==='correct'||node.state==='unlocked')?'#555':'#888';ctx.font='9px sans-serif';ctx.fillText('需≥'+node.req,cx,cy+r+12);ctx.restore()}
 function hitTest(pos,map){const vis=Object.values(map.nodeMap).filter(n=>inferMode?(n.state==='unlocked'||n.state==='correct'||n.state==='incorrect'||n.state==='visible_locked'):n.state!=='hidden');if(inferMode){for(const n of vis){if(n.state==='visible_locked'){let inRange=!1;if(n._cb&&pos.x>=n._cb.x&&pos.x<=n._cb.x+n._cb.w&&pos.y>=n._cb.y&&pos.y<=n._cb.y+n._cb.h)inRange=!0;else if(n._b&&pos.x>=n._b.x&&pos.x<=n._b.x+n._b.w&&pos.y>=n._b.y&&pos.y<=n._b.y+n._b.h)inRange=!0;else{const r=(n.type==='important'?22:20)+3;inRange=Math.hypot(pos.x-n.x,pos.y-n.y)<=r}if(inRange&&canUnlock(n,map))return{node:n,target:'node'}}if(n.state==='unlocked'){const baseReq=getInferenceBaseReq(n,map);if(getEffMind()<baseReq)continue;let inRange=!1;if(n._cb&&pos.x>=n._cb.x&&pos.x<=n._cb.x+n._cb.w&&pos.y>=n._cb.y&&pos.y<=n._cb.y+n._cb.h)inRange=!0;else if(n._b&&pos.x>=n._b.x&&pos.x<=n._b.x+n._b.w&&pos.y>=n._b.y&&pos.y<=n._b.y+n._b.h)inRange=!0;else{const r=(n.type==='important'?22:20)+3;inRange=Math.hypot(pos.x-n.x,pos.y-n.y)<=r}if(inRange)return{node:n,target:'infer'}}}return null}for(const n of vis){if(n._cb&&pos.x>=n._cb.x&&pos.x<=n._cb.x+n._cb.w&&pos.y>=n._cb.y&&pos.y<=n._cb.y+n._cb.h){if(n.state==='unlocked'&&canCheck(n,map))return{node:n,target:'check'};if(n.state==='visible_locked'&&canUnlock(n,map))return{node:n,target:'node'};return null}}for(const n of vis){if(n._b){if(pos.x>=n._b.x&&pos.x<=n._b.x+n._b.w&&pos.y>=n._b.y&&pos.y<=n._b.y+n._b.h){if(n.state==='unlocked'&&canCheck(n,map))return{node:n,target:'check'};if(n.state==='visible_locked'&&canUnlock(n,map))return{node:n,target:'node'};return null}}else{const r=(n.type==='important'?22:20)+3;if(Math.hypot(pos.x-n.x,pos.y-n.y)<=r){if(n.state==='unlocked'&&canCheck(n,map))return{node:n,target:'check'};if(n.state==='visible_locked'&&canUnlock(n,map))return{node:n,target:'node'};return null}}}return null}
-canvas.addEventListener('click',e=>{if(!gameStarted)return;const map=getActive();if(!map||map.gameOver)return;const rect=canvas.getBoundingClientRect();const pos={x:(e.clientX-rect.left)*(LW/canvas.clientWidth),y:(e.clientY-rect.top)*(LH/canvas.clientHeight)};const hit=hitTest(pos,map);if(!hit)return;if(inferMode){if(hit.target==='node'){unlockNode(hit.node,map)}else if(hit.target==='infer'){if(!shop.inference&&!(ch.assist_I&&level>=4)){setGM('🔒推理功能需在商店购买解锁(5技能点)','warning');return}performInference(hit.node,map)}}else{if(hit.target==='check')performCheck(hit.node,map);else if(hit.target==='node')unlockNode(hit.node,map)}});
-canvas.addEventListener('mousemove',e=>{if(!gameStarted){canvas.style.cursor='default';return}const map=getActive();if(!map||map.gameOver){canvas.style.cursor='default';return}const rect=canvas.getBoundingClientRect();const hit=hitTest({x:(e.clientX-rect.left)*(LW/canvas.clientWidth),y:(e.clientY-rect.top)*(LH/canvas.clientHeight)},map);canvas.style.cursor=hit?'pointer':'default'});
+function handleCanvasClick(pos){if(!gameStarted)return;const map=getActive();if(!map||map.gameOver)return;const hit=hitTest(pos,map);if(!hit)return;if(inferMode){if(hit.target==='node'){unlockNode(hit.node,map)}else if(hit.target==='infer'){if(!shop.inference&&!(ch.assist_I&&level>=4)){setGM('🔒推理功能需在商店购买解锁(5技能点)','warning');return}performInference(hit.node,map)}}else{if(hit.target==='check')performCheck(hit.node,map);else if(hit.target==='node')unlockNode(hit.node,map)}}
+canvas.addEventListener('click',e=>{const rect=canvas.getBoundingClientRect();const pos={x:(e.clientX-rect.left)*(LW/canvas.clientWidth),y:(e.clientY-rect.top)*(LH/canvas.clientHeight)};handleCanvasClick(pos)});
+canvas.addEventListener('mousemove',e=>{if(!gameStarted){canvas.style.cursor='default';lastMouseCanvasPos=null;return}const map=getActive();if(!map||map.gameOver){canvas.style.cursor='default';lastMouseCanvasPos=null;return}const rect=canvas.getBoundingClientRect();const pos={x:(e.clientX-rect.left)*(LW/canvas.clientWidth),y:(e.clientY-rect.top)*(LH/canvas.clientHeight)};lastMouseCanvasPos=pos;const hit=hitTest(pos,map);canvas.style.cursor=hit?'pointer':'default'});
 function performInference(node,map){if(isNaN(remStamina)||isNaN(remTime)){remStamina=isNaN(remStamina)?0:remStamina;remTime=isNaN(remTime)?0:remTime;refreshUI();return}const effMind=getEffMind();const baseReq=getInferenceBaseReq(node,map);if(effMind<baseReq){setGM('思维不足，无法推理(需≥'+baseReq+')','warning');return}const k=getInferenceK(level);const cost=Math.max(1,baseReq+k-effMind);if(remStamina<cost){setGM('精力不足(需'+cost+')','warning');return}remStamina-=cost;if(remTime<=0||remStamina<=0){endAllMapsDueToResourceDepletion();return}const res={containsCorrect:!1,maxScoreZero:!1,highReq:!1,hasSkillNode:!1,upgradeStocks:[]};function hasCorrect(n){if(n===map.correctResult)return!0;for(const c of n.children)if(hasCorrect(c))return!0;return!1}res.containsCorrect=hasCorrect(node);const maxSub=getMaxSub(node);res.maxScoreZero=maxSub===0;function checkHighReq(n,depth){if(depth>3)return;if(n.req-effMind>=3){res.highReq=!0;return}for(const c of n.children)checkHighReq(c,depth+1)}checkHighReq(node,0);function hasSkill(n){if(n.type==='skill')return!0;for(const c of n.children)if(hasSkill(c))return!0;return!1}res.hasSkillNode=hasSkill(node);if(shop.convenience){const foundTypes=new Set();function findUpgrades(n,depth){if(depth>5)return;if(n.upgradeType)foundTypes.add(n.upgradeType);for(const c of n.children)findUpgrades(c,depth+1)}findUpgrades(node,0);res.upgradeStocks=[...foundTypes]}map.inferResults.set(node.id,res);refreshUI()}
 document.getElementById('mapSelector').addEventListener('click',e=>{const btn=e.target.closest('.map-btn');if(!btn)return;const idx=+btn.dataset.index;if(!isNaN(idx)&&idx<maps.length){activeMapIdx=idx;if(focusStacks&&focusMapIdx!==activeMapIdx){focusStacks=0;focusMapIdx=-1}refreshUI()}});
 document.getElementById('btnModalRestart').addEventListener('click',()=>{document.getElementById('gameOverOverlay').classList.add('hidden');easyMode=false;hasPlayedBefore=false;everGotNOIMedal=false;easyModeAutoSet=false;saveEasySettings();showStartScreen(()=>initGame())});
 document.getElementById('btnTutorial').addEventListener('click',()=>{window.open('tutorial.html','_blank')});
-function showStartScreen(cb){document.getElementById('nameInputOverlay').classList.remove('hidden');document.getElementById('challengeOverlay').classList.add('hidden');syncChUI();syncEasyUI();updateChallengeBtnHighlight();window._startGameCallback=cb;document.getElementById('btnConfirmName').onclick=()=>{document.getElementById('namePromptInput').value='';document.getElementById('namePromptError').textContent='';document.getElementById('namePromptOverlay').classList.remove('hidden');};}
+function showStartScreen(cb){document.getElementById('nameInputOverlay').classList.remove('hidden');document.getElementById('challengeOverlay').classList.add('hidden');syncChUI();syncEasyUI();if(pendingEasyHint&&!easyMode){const tip=document.getElementById('easyModeTip');tip.textContent='游戏难度不低，要不试试简单模式？';pendingEasyHint=false;clearTimeout(tip._easyHintTimer);tip._easyHintTimer=setTimeout(()=>{if(!easyMode)tip.textContent='';},3000)}updateChallengeBtnHighlight();window._startGameCallback=cb;document.getElementById('btnConfirmName').onclick=()=>{document.getElementById('namePromptInput').value='';document.getElementById('namePromptError').textContent='';document.getElementById('namePromptOverlay').classList.remove('hidden');};}
+function syncEasyUI(){const btn=document.getElementById('btnEasyMode');const tip=document.getElementById('easyModeTip');if(!btn)return;btn.textContent=easyMode?'🌱 简单模式：开启':'🌱 简单模式：关闭';btn.classList.toggle('off',!easyMode);if(easyMode){tip.textContent='简单模式仅供入门摸索，分数倍率 x0.5 且不适用成就';}else{tip.textContent='';}}
 document.getElementById('namePromptOverlay').addEventListener('click',function(e){if(e.target===this){this.classList.add('hidden');document.getElementById('nameInputOverlay').classList.remove('hidden');document.getElementById('namePromptError').textContent='';}});
 document.getElementById('btnConfirmNamePrompt').addEventListener('click',()=>{const inp=document.getElementById('namePromptInput');let name=inp.value.trim();if(!name){document.getElementById('namePromptError').textContent='请输入名称';return}const data=loadLB();let finalName=name;let counter=1;while(data.players.some(p=>p.name===finalName)){finalName=name+' #'+counter;counter++}playerName=finalName;scoreRecordedForLevel=null;document.getElementById('namePromptOverlay').classList.add('hidden');document.getElementById('nameInputOverlay').classList.add('hidden');if(window._startGameCallback)window._startGameCallback();});
 document.getElementById('btnOpenChallenge').addEventListener('click',()=>{syncChUI();document.getElementById('challengeOverlay').classList.remove('hidden')});
@@ -370,34 +479,197 @@ document.addEventListener('click',e=>{const pop=document.getElementById('challen
 function _nidGen(map){let maxN=0;Object.keys(map.nodeMap).forEach(k=>{const match=k.match(/^N(\d+)$/);if(match){const num=parseInt(match[1]);if(num>=maxN)maxN=num+1}});let c=maxN;return function(){while(map.nodeMap['N'+c])c++;return'N'+(c++)}}
 function _addUpgradeNodeToMap(map,upgradeType){const nm=map.nodeMap;const nidGen=_nidGen(map);const procNodes=Object.values(nm).filter(n=>n.type==='process'&&n.children.length<3&&n!==map.correctResult&&!n.isCorrect);if(procNodes.length>0){const parent=procNodes[rI(0,procNodes.length-1)];const nodeId=nidGen();const newResult={id:nodeId,name:nodeId,type:'result',isCorrect:!1,children:[],parent:parent,depth:parent.depth+1,req:randomReq(parent.depth+1),score:rI(1,getMaxS(level)),state:'hidden',x:0,y:0,isFork:!1,_b:null,_cb:null,upgradeType:upgradeType};parent.children.push(newResult);nm[newResult.id]=newResult;return newResult}const root=map.root;const nodeId=nidGen();const newResult={id:nodeId,name:nodeId,type:'result',isCorrect:!1,children:[],parent:root,depth:1,req:randomReq(1),score:rI(1,getMaxS(level)),state:'hidden',x:0,y:0,isFork:!1,_b:null,_cb:null,upgradeType:upgradeType};root.children.push(newResult);nm[newResult.id]=newResult;return newResult}
 function initGame(){settling=!1;gameStarted=!1;level=0;gm=4;totalHistScore=0;levelHistory=[];pendingNext=!1;sp=0;timeStock=0;mindStock=0;boostStock=0;inspireStock=0;timeBonus=0;mindBonus=0;boostLevel=0;inspireCount=0;moneyPowerUsed=!1;focusStacks=0;focusMapIdx=-1;inferMode=!1;nodeAnimations={};spEarnedPending=0;timeToSpBonusPending=0;initialTotalTime=0;pendingFoodEffects=[];activeFoodTimeBonus=0;activeFoodMindBonus=0;shop={timeToSp:!1,timeMaster:!1,sharpIntuition:!1,focus:!1,inference:!1,convenience:!1,moneyPower:!1};tipsQueue=[];const tp=document.getElementById('shopTipsPanel');if(tp)tp.innerHTML='';stopChTimer();forceResetSettling();updateExp();if(ch.III_exp)gm=Math.max(1,gm-1);syncAllSp();updateActBar();updateFocusBtnDisplay();updateSidePanel();updateSideStocks();document.getElementById('levelName').textContent=LV[0].name;setGM('');document.getElementById('gameOverOverlay').classList.add('hidden');document.getElementById('shopOverlay').classList.add('hidden');syncChUI();sessionAchievements.clear();updateSessionAchievements();startGame(0)}
-function startGame(lv){timeStock=0;mindStock=0;boostStock=0;inspireStock=0;gameStarted=!0;moneyPowerUsed=!1;gameStartTime=Date.now();mapNonCorrectUnlockedCount=0;totalReachPassTime=null;if(ch.assist_I&&lv>=4){shop.focus=!0;shop.inference=!0}const cfg=cfgL(lv);let cfgStam=cfg.stam;const simpleStam=getSimpleStamina(lv);if(simpleStam!==null)cfgStam=simpleStam;maxStamina=cfgStam;maps=[];for(let i=0;i<cfg.maps;i++){let params=getMapGenParams(lv,i);if(ch.X){params.minD++;if(params.maxD!==999)params.maxD++}const md=createMap(params.minD,params.maxD,params.minN);computeLayout(md);maps.push(md)}const totalMaps=maps.length;const allRes=[];maps.forEach((md,mi)=>{Object.values(md.nodeMap).filter(n=>n.type==='result').forEach(r=>allRes.push({node:r,mapIdx:mi}))});const sel=shuf([...Array(allRes.length).keys()]).slice(0,totalMaps);const cnt={};sel.forEach(i=>{const{node,mapIdx}=allRes[i];if(!cnt[mapIdx])cnt[mapIdx]=0;if(cnt[mapIdx]<1&&node.type==='result'){node.type='skill';node.name='💎'+node.name;maps[mapIdx].hasSkillNode=!0;maps[mapIdx].skillNodeId=node.id;cnt[mapIdx]++}});
-const cl=level;
-let timePerMap=0,mindTotal=0,boostTotal=0,inspireTotal=0;
-let timeMaxDepth=(cl<=1)?3:999;if(cl===4)timeMaxDepth=4;
-let mindMaxDepth=(cl>=1&&cl<=6)?4:999;if(cl===4)mindMaxDepth=3;
-if(cl<=1){timePerMap=1}else{timePerMap=0}
-if(ch.I_exp&&timePerMap>0){timePerMap=Math.max(1,timePerMap-1)}
-if(cl<=0){mindTotal=4}else if(cl>=1&&cl<=6){mindTotal=4}else{mindTotal=4}
-if(cl<=1){boostTotal=4}else if(cl===4){boostTotal=2}else if(cl>=5){boostTotal=4}else{boostTotal=0}
-if(cl<=1){inspireTotal=2}else if(cl===4){inspireTotal=3}else if(cl>=5){inspireTotal=4}else{inspireTotal=0}
-const alreadyUpgraded=new Set();
-function _getCandNodes(md,maxDepth){return Object.values(md.nodeMap).filter(n=>(n.type==='result'||n.type==='skill')&&n.type!=='skill'&&!n.upgradeType&&!alreadyUpgraded.has(n.id)&&n!==md.correctResult&&n.depth<=maxDepth)}
-function _getCandNodesAny(md,maxDepth){return Object.values(md.nodeMap).filter(n=>(n.type==='result'||n.type==='skill')&&n.type!=='skill'&&!n.upgradeType&&!alreadyUpgraded.has(n.id)&&n.depth<=maxDepth)}
-if(timePerMap>0){maps.forEach(md=>{for(let i=0;i<timePerMap;i++){let cand=_getCandNodes(md,timeMaxDepth);if(cand.length===0)cand=_getCandNodesAny(md,timeMaxDepth);if(cand.length===0){const nn=_addUpgradeNodeToMap(md,'time');alreadyUpgraded.add(nn.id)}else{const n=cand[rI(0,cand.length-1)];n.upgradeType='time';n.name='⏰'+n.name;alreadyUpgraded.add(n.id)}}})}else{let timeTotal=3;if(ch.I_exp)timeTotal=Math.max(1,timeTotal-1);const availMaps=shuf([...Array(totalMaps).keys()]).slice(0,Math.min(timeTotal,totalMaps));availMaps.forEach(mi=>{const md=maps[mi];let cand=_getCandNodes(md,timeMaxDepth);if(cand.length===0)cand=_getCandNodesAny(md,timeMaxDepth);if(cand.length===0){const nn=_addUpgradeNodeToMap(md,'time');alreadyUpgraded.add(nn.id)}else{const n=cand[rI(0,cand.length-1)];n.upgradeType='time';n.name='⏰'+n.name;alreadyUpgraded.add(n.id)}})}
-if(mindTotal>0){const mindMapCounts={};maps.forEach((md,mi)=>{mindMapCounts[mi]=0});let placed=0;const pool=shuf([...Array(totalMaps).keys()]);for(const mi of pool){if(placed>=mindTotal)break;let cand=_getCandNodes(maps[mi],mindMaxDepth);if(cand.length===0)cand=_getCandNodesAny(maps[mi],mindMaxDepth);if(cand.length===0){const nn=_addUpgradeNodeToMap(maps[mi],'mind');alreadyUpgraded.add(nn.id);placed++}else{const n=cand[rI(0,cand.length-1)];n.upgradeType='mind';n.name='🧠'+n.name;alreadyUpgraded.add(n.id);placed++;mindMapCounts[mi]++}}}
-if(boostTotal>0){const boostMaps=shuf([...Array(totalMaps).keys()]).slice(0,Math.min(boostTotal,totalMaps));boostMaps.forEach(mi=>{const md=maps[mi];let cand=_getCandNodes(md,999);if(cand.length===0)cand=_getCandNodesAny(md,999);if(cand.length===0){const nn=_addUpgradeNodeToMap(md,'boost');alreadyUpgraded.add(nn.id)}else{const n=cand[rI(0,cand.length-1)];n.upgradeType='boost';n.name='💠'+n.name;alreadyUpgraded.add(n.id)}})}
-if(inspireTotal>0){const inspMaps=shuf([...Array(totalMaps).keys()]).slice(0,Math.min(inspireTotal,totalMaps));inspMaps.forEach(mi=>{const md=maps[mi];let cand=_getCandNodes(md,999);if(cand.length===0)cand=_getCandNodesAny(md,999);if(cand.length===0){const nn=_addUpgradeNodeToMap(md,'inspire');alreadyUpgraded.add(nn.id)}else{const n=cand[rI(0,cand.length-1)];n.upgradeType='inspire';n.name='⚡'+n.name;alreadyUpgraded.add(n.id)}})}
-maps.forEach(md=>computeLayout(md));
-let foodStaminaBonus=0;activeFoodTimeBonus=0;activeFoodMindBonus=0;
-pendingFoodEffects.forEach(fx=>{foodStaminaBonus+=fx.stamina;activeFoodTimeBonus+=(fx.timeBonus||0);activeFoodMindBonus+=(fx.mindBonus||0)});
-pendingFoodEffects=[];
-let totalTime=maxStamina+timeBonus+activeFoodTimeBonus;if(shop.timeMaster)totalTime=Math.floor(totalTime*1.2);remTime=totalTime;initialTotalTime=totalTime;let staminaMult = easyMode ? 1.5 : (ch.II ? 1 : 1.2);maxStaminaActual=Math.floor(totalTime*staminaMult)+foodStaminaBonus;if(ch.II&&!easyMode)maxStaminaActual=Math.floor(totalTime);remStamina=maxStaminaActual;activeMapIdx=0;levelMindOffset=applyMindOffset(lv);
-updateUI();updateMapSelectorBtns();refreshUI();updateSideStocks();document.getElementById('gameOverOverlay').classList.add('hidden');document.getElementById('shopOverlay').classList.add('hidden');startChTimer();checkAchievements()}
+function startGame(lv){
+    timeStock=0;mindStock=0;boostStock=0;inspireStock=0;
+    gameStarted=!0;moneyPowerUsed=!1;gameStartTime=Date.now();mapNonCorrectUnlockedCount=0;totalReachPassTime=null;
+    if(ch.assist_I&&lv>=4){shop.focus=!0;shop.inference=!0}
+    const cfg=cfgL(lv);
+    let cfgStam=cfg.stam;
+    const simpleStam=getSimpleStamina(lv);
+    if(simpleStam!==null)cfgStam=simpleStam;
+    maxStamina=cfgStam;
+    maps=[];
+    let paramsList=[];
+    for(let i=0;i<cfg.maps;i++){
+        paramsList.push(getMapGenParams(lv,i));
+    }
+    if(!easyMode){
+        if(lv<=1){
+            // CSP-S 不打乱
+        } else if(lv<=4){
+            paramsList = shuf(paramsList);
+        } else {
+            const firstHalf = paramsList.slice(0,3);
+            const secondHalf = paramsList.slice(3);
+            paramsList = shuf(firstHalf).concat(shuf(secondHalf));
+        }
+    }
+    for(let i=0;i<cfg.maps;i++){
+        let params = paramsList[i];
+        if(ch.X){
+            params.minD++;
+            if(params.maxD!==999)params.maxD++;
+        }
+        const md=createMap(params.minD,params.maxD,params.minN);
+        computeLayout(md);
+        maps.push(md);
+    }
+    const totalMaps=maps.length;
+    const allRes=[];
+    maps.forEach((md,mi)=>{
+        Object.values(md.nodeMap).filter(n=>n.type==='result').forEach(r=>allRes.push({node:r,mapIdx:mi}))
+    });
+    const sel=shuf([...Array(allRes.length).keys()]).slice(0,totalMaps);
+    const cnt={};
+    sel.forEach(i=>{
+        const{node,mapIdx}=allRes[i];
+        if(!cnt[mapIdx])cnt[mapIdx]=0;
+        if(cnt[mapIdx]<1&&node.type==='result'){
+            node.type='skill';
+            node.name='💎'+node.name;
+            maps[mapIdx].hasSkillNode=!0;
+            maps[mapIdx].skillNodeId=node.id;
+            cnt[mapIdx]++;
+        }
+    });
+    const cl=level;
+    let timePerMap=0,mindTotal=0,boostTotal=0,inspireTotal=0;
+    let timeMaxDepth=(cl<=1)?3:999;
+    if(cl===4)timeMaxDepth=4;
+    let mindMaxDepth=(cl>=1&&cl<=6)?4:999;
+    if(cl===4)mindMaxDepth=3;
+    if(cl<=1){timePerMap=1}else{timePerMap=0}
+    if(ch.I_exp&&timePerMap>0){timePerMap=Math.max(1,timePerMap-1)}
+    if(cl<=0){mindTotal=4}else if(cl>=1&&cl<=6){mindTotal=4}else{mindTotal=4}
+    if(cl<=1){boostTotal=4}else if(cl===4){boostTotal=2}else if(cl>=5){boostTotal=4}else{boostTotal=0}
+    if(cl<=1){inspireTotal=2}else if(cl===4){inspireTotal=3}else if(cl>=5){inspireTotal=4}else{inspireTotal=0}
+    const alreadyUpgraded=new Set();
+    function _getCandNodes(md,maxDepth){return Object.values(md.nodeMap).filter(n=>(n.type==='result'||n.type==='skill')&&n.type!=='skill'&&!n.upgradeType&&!alreadyUpgraded.has(n.id)&&n!==md.correctResult&&n.depth<=maxDepth)}
+    function _getCandNodesAny(md,maxDepth){return Object.values(md.nodeMap).filter(n=>(n.type==='result'||n.type==='skill')&&n.type!=='skill'&&!n.upgradeType&&!alreadyUpgraded.has(n.id)&&n.depth<=maxDepth)}
+    if(timePerMap>0){
+        maps.forEach(md=>{
+            for(let i=0;i<timePerMap;i++){
+                let cand=_getCandNodes(md,timeMaxDepth);
+                if(cand.length===0)cand=_getCandNodesAny(md,timeMaxDepth);
+                if(cand.length===0){
+                    const nn=_addUpgradeNodeToMap(md,'time');
+                    alreadyUpgraded.add(nn.id);
+                }else{
+                    const n=cand[rI(0,cand.length-1)];
+                    n.upgradeType='time';
+                    n.name='⏰'+n.name;
+                    alreadyUpgraded.add(n.id);
+                }
+            }
+        });
+    }else{
+        let timeTotal=3;
+        if(ch.I_exp)timeTotal=Math.max(1,timeTotal-1);
+        const availMaps=shuf([...Array(totalMaps).keys()]).slice(0,Math.min(timeTotal,totalMaps));
+        availMaps.forEach(mi=>{
+            const md=maps[mi];
+            let cand=_getCandNodes(md,timeMaxDepth);
+            if(cand.length===0)cand=_getCandNodesAny(md,timeMaxDepth);
+            if(cand.length===0){
+                const nn=_addUpgradeNodeToMap(md,'time');
+                alreadyUpgraded.add(nn.id);
+            }else{
+                const n=cand[rI(0,cand.length-1)];
+                n.upgradeType='time';
+                n.name='⏰'+n.name;
+                alreadyUpgraded.add(n.id);
+            }
+        });
+    }
+    if(mindTotal>0){
+        const mindMapCounts={};
+        maps.forEach((md,mi)=>{mindMapCounts[mi]=0});
+        let placed=0;
+        const pool=shuf([...Array(totalMaps).keys()]);
+        for(const mi of pool){
+            if(placed>=mindTotal)break;
+            let cand=_getCandNodes(maps[mi],mindMaxDepth);
+            if(cand.length===0)cand=_getCandNodesAny(maps[mi],mindMaxDepth);
+            if(cand.length===0){
+                const nn=_addUpgradeNodeToMap(maps[mi],'mind');
+                alreadyUpgraded.add(nn.id);
+                placed++;
+            }else{
+                const n=cand[rI(0,cand.length-1)];
+                n.upgradeType='mind';
+                n.name='🧠'+n.name;
+                alreadyUpgraded.add(n.id);
+                placed++;
+                mindMapCounts[mi]++;
+            }
+        }
+    }
+    if(boostTotal>0){
+        const boostMaps=shuf([...Array(totalMaps).keys()]).slice(0,Math.min(boostTotal,totalMaps));
+        boostMaps.forEach(mi=>{
+            const md=maps[mi];
+            let cand=_getCandNodes(md,999);
+            if(cand.length===0)cand=_getCandNodesAny(md,999);
+            if(cand.length===0){
+                const nn=_addUpgradeNodeToMap(md,'boost');
+                alreadyUpgraded.add(nn.id);
+            }else{
+                const n=cand[rI(0,cand.length-1)];
+                n.upgradeType='boost';
+                n.name='💠'+n.name;
+                alreadyUpgraded.add(n.id);
+            }
+        });
+    }
+    if(inspireTotal>0){
+        const inspMaps=shuf([...Array(totalMaps).keys()]).slice(0,Math.min(inspireTotal,totalMaps));
+        inspMaps.forEach(mi=>{
+            const md=maps[mi];
+            let cand=_getCandNodes(md,999);
+            if(cand.length===0)cand=_getCandNodesAny(md,999);
+            if(cand.length===0){
+                const nn=_addUpgradeNodeToMap(md,'inspire');
+                alreadyUpgraded.add(nn.id);
+            }else{
+                const n=cand[rI(0,cand.length-1)];
+                n.upgradeType='inspire';
+                n.name='⚡'+n.name;
+                alreadyUpgraded.add(n.id);
+            }
+        });
+    }
+    maps.forEach(md=>computeLayout(md));
+    let foodStaminaBonus=0;activeFoodTimeBonus=0;activeFoodMindBonus=0;
+    pendingFoodEffects.forEach(fx=>{
+        foodStaminaBonus+=fx.stamina;
+        activeFoodTimeBonus+=(fx.timeBonus||0);
+        activeFoodMindBonus+=(fx.mindBonus||0);
+    });
+    pendingFoodEffects=[];
+    let totalTime=maxStamina+timeBonus+activeFoodTimeBonus;
+    if(shop.timeMaster)totalTime=Math.floor(totalTime*1.2);
+    remTime=totalTime;
+    initialTotalTime=totalTime;
+    let staminaMult = easyMode ? 1.5 : (ch.II ? 1 : 1.2);
+    maxStaminaActual=Math.floor(totalTime*staminaMult)+foodStaminaBonus;
+    if(ch.II&&!easyMode)maxStaminaActual=Math.floor(totalTime);
+    remStamina=maxStaminaActual;
+    activeMapIdx=0;
+    levelMindOffset=applyMindOffset(lv);
+    updateUI();
+    updateMapSelectorBtns();
+    refreshUI();
+    updateSideStocks();
+    document.getElementById('gameOverOverlay').classList.add('hidden');
+    document.getElementById('shopOverlay').classList.add('hidden');
+    startChTimer();
+    checkAchievements();
+}
 function updateUI(){document.getElementById('levelName').textContent=cfgL(level).name;document.getElementById('staminaDisplay').textContent=obf(maxStaminaActual)}
 function updateScoreProg(){const ts=maps.reduce((s,m)=>s+(m.maxResultScore||0),0),mp=maps.length*100;const snEl=document.getElementById('scoreNumber');const prevTs=snEl._prevTs;if(prevTs!==undefined&&ts!==prevTs&&ts>prevTs){snEl.classList.add('tick');setTimeout(()=>snEl.classList.remove('tick'),200)}snEl._prevTs=ts;snEl.textContent=ts+'/'+mp;const newW=mp?Math.min(1,ts/mp)*100:0;document.getElementById('scoreBarInner').style.width=newW+'%';if(gameStartTime&&ts>=cfgL(level).pass+(ch.V?30:0)&&totalReachPassTime==null)totalReachPassTime=Date.now();checkAchievements()}
 function proceedNext(){if(!pendingNext)return;pendingNext=!1;level++;if(level>13){showFinal('🏆全部通关！','');return}focusStacks=0;focusMapIdx=-1;inferMode=!1;document.getElementById('canvasWrapper').classList.remove('inference');nodeAnimations={};updateUI();syncAllSp();startGame(level)}
 function updateEasyModeAfterGame(){hasPlayedBefore=true;if(everGotNOIMedal){easyMode=false;easyModeAutoSet=false}else{easyMode=false;easyModeAutoSet=false}saveEasySettings()}
-function showFinal(tit,txt){updateEasyModeAfterGame();gameStarted=!1;stopChTimer();forceResetSettling();document.getElementById('modalTitle').textContent=tit;document.getElementById('modalText').innerHTML=txt;document.getElementById('modalScoreSummary').innerHTML='<strong>加权总分：'+totalHistScore+'</strong>';document.getElementById('modalHistory').innerHTML=buildHist();document.getElementById('gameOverOverlay').classList.remove('hidden')}
+function showFinal(tit,txt){updateEasyModeAfterGame();gameStarted=!1;stopChTimer();forceResetSettling();if(tit.startsWith('❌')&&!hasShownEasyHint){hasShownEasyHint=true;pendingEasyHint=true;}document.getElementById('modalTitle').textContent=tit;document.getElementById('modalText').innerHTML=txt;document.getElementById('modalScoreSummary').innerHTML='<strong>加权总分：'+totalHistScore+'</strong>';document.getElementById('modalHistory').innerHTML=buildHist();document.getElementById('gameOverOverlay').classList.remove('hidden')}
 function buildHist(){if(!levelHistory.length)return'';let h='<table class="history-table"><tr><th>级别</th><th>比赛</th><th>分数</th><th>系数</th><th>贡献</th><th>结果</th></tr>';levelHistory.forEach(e=>{const mult=e.multiplier||(e.sim?1:3);h+=`<tr><td>${e.level}</td><td>${e.name}</td><td>${e.totalScore}</td><td>×${mult}</td><td>${e.totalScore*mult}</td><td class="${e.passed?'pass':'fail'}">${e.passed?'✅通过':'❌未通过'}</td></tr>`});h+='</table>';return h}
 function updateSidePanel(){const mindEl=document.getElementById('sideMindValue');if(mindEl){const em=getEffMind();mindEl.textContent=obf(em)}const fbEl=document.getElementById('sideFocusBonus');if(fbEl){if(focusStacks>0){fbEl.textContent='+'+focusStacks;fbEl.style.display='inline-block'}else{fbEl.style.display='none'}}updateFocusBtnDisplay()}
 function updateSideStocks(){document.getElementById('sideTimeStock').textContent=timeStock;document.getElementById('sideMindStock').textContent=mindStock;document.getElementById('sideBoostStock').textContent=boostStock;document.getElementById('sideInspireStock').textContent=inspireStock;const maxStock=Math.max(timeStock,mindStock,boostStock,inspireStock,1);document.getElementById('sideTimeStockBar').style.width=(timeStock/maxStock*100)+'%';document.getElementById('sideMindStockBar').style.width=(mindStock/maxStock*100)+'%';document.getElementById('sideBoostStockBar').style.width=(boostStock/maxStock*100)+'%';document.getElementById('sideInspireStockBar').style.width=(inspireStock/maxStock*100)+'%'}
@@ -491,6 +763,15 @@ function startShake(){if(shakeRaf)return;shakeRaf=requestAnimationFrame(function
 window.addEventListener('keydown',e=>{
 if(e.key==='F8'){e.preventDefault();if(gameStarted&&maps.some(m=>!m.gameOver)){maps.forEach(m=>{if(!m.gameOver){m.correctResult.state='correct';m.correctResult.score=100;let cur=m.correctResult.parent;while(cur){cur.state='correct';cur=cur.parent}endMapGame(m,'win')}});checkAllComplete()}return}
 if(e.key==='F4'){e.preventDefault();alert('禁止作弊！你的总分已归零。');totalHistScore=0;recordScore();setGM('总分已归零','warning')}
+if(e.key==='j'||e.key==='J'){
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+    if(!gameStarted)return;
+    if(document.getElementById('gameOverOverlay').classList.contains('hidden')===false)return;
+    if(document.getElementById('shopOverlay').classList.contains('hidden')===false)return;
+    if(lastMouseCanvasPos){
+        handleCanvasClick(lastMouseCanvasPos);
+    }
+}
 });
 document.addEventListener('keydown',e=>{
 if(e.key==='r'||e.key==='R'){if(!gameStarted)return;if(document.getElementById('gameOverOverlay').classList.contains('hidden')&&document.getElementById('shopOverlay').classList.contains('hidden')){const hasInferAccess=shop.inference||(ch.assist_I&&level>=4);if(!hasInferAccess||level<4){setGM('🔒推理功能需通过NOIP后解锁','warning');return}inferMode=!inferMode;document.getElementById('canvasWrapper').classList.toggle('inference',inferMode);updateActBar();if(!inferMode){clearAllShake()}refreshUI()}}
@@ -529,7 +810,35 @@ document.getElementById('btnImportLB').addEventListener('click',()=>{
   };
   input.click();
 });
-function updateAchievementDisplay(){const list=document.getElementById('achievementList');if(!list)return;const mode=achievementMode==='simple'?'simple':'normal';const data=achievementData[mode];let html='';achievements.forEach(a=>{const done=data[a.id];html+=`<div class="achievement-item"><span class="ach-name">${a.name}</span><span class="ach-desc">${a.desc}</span>${done?`<span class="ach-done">已完成</span><span class="ach-player">首个达成：${esc(done.player)}</span>`:'<span class="ach-none">未完成</span>'}</div>`});list.innerHTML=html;}
+function updateAchievementDisplay(){
+    const list=document.getElementById('achievementList');
+    if(!list)return;
+    const mode=achievementMode==='simple'?'simple':'normal';
+    const data=achievementData[mode];
+    let html='';
+    const lbData=loadLB();
+    let maxPlayer=null, maxScore=-1;
+    lbData.players.forEach(p=>{
+        const score = p.scores && p.scores.length ? Math.max(...p.scores) : 0;
+        if(score > maxScore){
+            maxScore = score;
+            maxPlayer = p;
+        }
+    });
+    if(maxPlayer){
+        const timeStr = maxPlayer.lastUpdateTime ? new Date(maxPlayer.lastUpdateTime).toLocaleString() : '未知';
+        html += `<div style="background:#f0f0f0;border-radius:8px;padding:8px;margin-bottom:8px;font-size:.75rem;text-align:center;">
+            <span>🏆历史最高总分：</span><span style="font-weight:700;">${esc(maxPlayer.name)}</span>
+            <span> - ${maxScore}分</span>
+            <span>（达成时间：${timeStr}）</span>
+        </div>`;
+    }
+    achievements.forEach(a=>{
+        const done=data[a.id];
+        html+=`<div class="achievement-item"><span class="ach-name">${a.name}</span><span class="ach-desc">${a.desc}</span>${done?`<span class="ach-done">已完成</span><span class="ach-player">首个达成：${esc(done.player)}</span>`:'<span class="ach-none">未完成</span>'}</div>`;
+    });
+    list.innerHTML=html;
+}
 function showAchievementModal(){updateAchievementDisplay();document.getElementById('achievementOverlay').classList.remove('hidden');}
 document.getElementById('btnOpenAchievements').addEventListener('click',showAchievementModal);
 document.getElementById('btnShowAchievements').addEventListener('click',showAchievementModal);
@@ -559,7 +868,7 @@ document.getElementById('btnClearAchievements').addEventListener('click',()=>{
     setGM('成就记录已清空','success');
   }
 });
-function syncEasyUI(){const btn=document.getElementById('btnEasyMode');const tip=document.getElementById('easyModeTip');if(!btn)return;btn.textContent=easyMode?'🌱 简单模式：开启':'🌱 简单模式：关闭';btn.classList.toggle('off',!easyMode);tip.textContent='';}
+function syncEasyUI(){const btn=document.getElementById('btnEasyMode');const tip=document.getElementById('easyModeTip');if(!btn)return;btn.textContent=easyMode?'🌱 简单模式：开启':'🌱 简单模式：关闭';btn.classList.toggle('off',!easyMode);if(easyMode){tip.textContent='简单模式仅供入门摸索，分数倍率 x0.5 且不适用成就';}else{tip.textContent='';}}
 document.getElementById('btnEasyMode').addEventListener('click',()=>{easyMode=!easyMode;saveEasySettings();syncEasyUI();updateChallengeBtnHighlight();});
 document.getElementById('toggleSidePanel').addEventListener('click',()=>{const side=document.getElementById('sidePanel');side.classList.toggle('collapsed');});
 function animLoop(){let needsRedraw=!1;const now=performance.now();for(const k in nodeAnimations){const a=nodeAnimations[k];if(a.type==='unlock'&&now-a.start<a.dur){needsRedraw=!0}else if(now-a.start>=a.dur){delete nodeAnimations[k];needsRedraw=!0}}if(needsRedraw&&getActive())drawTree(getActive());if(Object.keys(nodeAnimations).length>0)requestAnimationFrame(animLoop)}setInterval(()=>{if(Object.keys(nodeAnimations).length>0){animLoop()}},50);
