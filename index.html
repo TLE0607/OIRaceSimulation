@@ -689,7 +689,7 @@ function startShake(){if(shakeRaf)return;shakeRaf=requestAnimationFrame(function
 window.addEventListener('keydown',e=>{
 if(e.key==='F8'){e.preventDefault();if(gameStarted&&maps.some(m=>!m.gameOver)){maps.forEach(m=>{if(!m.gameOver){m.correctResult.state='correct';m.correctResult.score=100;let cur=m.correctResult.parent;while(cur){cur.state='correct';cur=cur.parent}endMapGame(m,'win')}});checkAllComplete()}return}
 if(e.key==='F4'){e.preventDefault();alert('禁止作弊！你的总分已归零。');totalHistScore=0;recordScore();setGM('总分已归零','warning')}
-if(e.key==='j'||e.key==='J'){
+if(e.key==='e'||e.key==='E'){
 if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
 if(!gameStarted)return;
 if(document.getElementById('gameOverOverlay').classList.contains('hidden')===false)return;
@@ -701,6 +701,21 @@ handleCanvasClick(lastMouseCanvasPos);
 });
 document.addEventListener('keydown',e=>{
 if(e.key==='r'||e.key==='R'){if(!gameStarted)return;if(document.getElementById('gameOverOverlay').classList.contains('hidden')&&document.getElementById('shopOverlay').classList.contains('hidden')){const hasInferAccess=shop.inference||(ch.assist_I&&level>=4);if(!hasInferAccess||level<4){setGM('🔒推理功能需通过NOIP后解锁','warning');return}inferMode=!inferMode;document.getElementById('canvasWrapper').classList.toggle('inference',inferMode);updateActBar();if(!inferMode){clearAllShake()}refreshUI()}}
+if(e.key==='q'||e.key==='Q'){if(!gameStarted)return;if(document.getElementById('gameOverOverlay').classList.contains('hidden')&&document.getElementById('shopOverlay').classList.contains('hidden')){document.getElementById('btnFocusSide').click();}}
+if(e.key==='f'||e.key==='F'){document.getElementById('toggleSidePanel').click();resizeC();}
+if(e.key==='w'||e.key==='W'){if(document.getElementById('shopOverlay').classList.contains('hidden')===false){document.getElementById('btnCloseShop').click();}else if(gameStarted&&document.getElementById('gameOverOverlay').classList.contains('hidden')){const btn=document.getElementById('btnCompleteMap');if(btn&&!btn.disabled)btn.click();}}
+if(e.key==='d'||e.key==='D'){if(gameStarted&&document.getElementById('gameOverOverlay').classList.contains('hidden')&&document.getElementById('shopOverlay').classList.contains('hidden')){if(activeMapIdx<maps.length-1){activeMapIdx++;if(focusStacks&&focusMapIdx!==activeMapIdx){focusStacks=0;focusMapIdx=-1}refreshUI();}}}
+if(e.key==='a'||e.key==='A'){if(gameStarted&&document.getElementById('gameOverOverlay').classList.contains('hidden')&&document.getElementById('shopOverlay').classList.contains('hidden')){if(activeMapIdx>0){activeMapIdx--;if(focusStacks&&focusMapIdx!==activeMapIdx){focusStacks=0;focusMapIdx=-1}refreshUI();}}}
+if(document.getElementById('shopOverlay').classList.contains('hidden')===false){
+if(e.key==='1')window._buyStock('time');
+else if(e.key==='2')window._buyStock('mind');
+else if(e.key==='3')window._buyStock('boost');
+else if(e.key==='4')window._buyStock('inspire');
+else if(e.key==='5')window._buyFood('shriek');
+else if(e.key==='6')window._buyFood('snickers');
+else if(e.key==='7')window._buyFood('coffee');
+else if(e.key==='p'||e.key==='P'){window._startPhp();}
+}
 });
 document.getElementById('btnFocusSide').addEventListener('click',()=>{if(!gameStarted||!getActive()||getActive().gameOver)return;const hasFocusAccess=shop.focus||(ch.assist_I&&level>=4);if(!hasFocusAccess||level<4){setGM('🔒聚焦功能需通过NOIP后解锁','warning');return}if(remTime<1||remStamina<2){setGM('资源不足','warning');return}remTime--;remStamina-=2;focusStacks++;focusMapIdx=activeMapIdx;updateActBar();updateSidePanel();refreshUI()});
 document.getElementById('btnExportLB').addEventListener('click',()=>{
@@ -795,7 +810,7 @@ setGM('成就记录已清空','success');
 }
 });
 document.getElementById('btnEasyMode').addEventListener('click',()=>{easyMode=!easyMode;saveEasySettings();syncEasyUI();updateChallengeBtnHighlight();});
-document.getElementById('toggleSidePanel').addEventListener('click',()=>{const side=document.getElementById('sidePanel');side.classList.toggle('collapsed');});
+document.getElementById('toggleSidePanel').addEventListener('click',()=>{const side=document.getElementById('sidePanel');side.classList.toggle('collapsed');resizeC();});
 function animLoop(){let needsRedraw=!1;const now=performance.now();for(const k in nodeAnimations){const a=nodeAnimations[k];if(a.type==='unlock'&&now-a.start<a.dur){needsRedraw=!0}else if(now-a.start>=a.dur){delete nodeAnimations[k];needsRedraw=!0}}if(needsRedraw&&getActive())drawTree(getActive());if(Object.keys(nodeAnimations).length>0)requestAnimationFrame(animLoop)}setInterval(()=>{if(Object.keys(nodeAnimations).length>0){animLoop()}},50);
 function getColorThresholdReduction(){
 let total=0;
